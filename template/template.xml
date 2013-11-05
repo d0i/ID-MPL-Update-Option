@@ -1,50 +1,77 @@
 <?xml version="1.0" ?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd">
-<rfc ipr="trust200902" category="info" docName="draft-doi-template-tbd-00">
-<?rfc toc="yes"?>         <!-- generate a table of contents -->
-<?rfc symrefs="yes"?>     <!-- use anchors instead of numbers for references -->
-<?rfc sortrefs="yes" ?>   <!-- alphabetize the references -->
-<?rfc compact="yes" ?>    <!-- conserve vertical whitespace -->
-<?rfc subcompact="no" ?>  <!-- but keep a blank line between list items -->
- <front>
-        <title abbrev="FIXME">FIXME</title>
+<rfc ipr="trust200902" category="std" docName="draft-doi-roll-mpl-parameter-configuration-03">
+  <?rfc toc="yes"?>         <!-- generate a table of contents -->
+  <?rfc symrefs="yes"?>     <!-- use anchors instead of numbers for references -->
+  <?rfc sortrefs="yes" ?>   <!-- alphabetize the references -->
+  <?rfc compact="yes" ?>    <!-- conserve vertical whitespace -->
+  <?rfc subcompact="no" ?>  <!-- but keep a blank line between list items -->
+  <front>
+    <title abbrev="MPL Conf. for DHCPv6">MPL Parameter Configuration Option for DHCPv6</title>
 
-        <author initials="Y." surname="Doi"
-                fullname="Yusuke Doi">
-            <organization>TOSHIBA Corporation</organization>
+    <author initials="Y." surname="Doi"
+	    fullname="Yusuke Doi">
+      <organization>TOSHIBA Corporation</organization>
 
-            <address>
-                <postal>
-                    <street>Komukai Toshiba Cho 1</street>
-                    <street>Saiwai-Ku</street>
-                    <city>Kawasaki</city> <region>Kanagawa</region>
-                    <code>2128582</code>
-                    <country>JAPAN</country>
-                </postal>
+      <address>
+	<postal>
+	  <street>Komukai Toshiba Cho 1</street>
+	  <street>Saiwai-Ku</street>
+	  <city>Kawasaki</city> <region>Kanagawa</region>
+	  <code>2128582</code>
+	  <country>JAPAN</country>
+	</postal>
 
-                <phone>+81-45-342-7230</phone>
-                <email>yusuke.doi@toshiba.co.jp</email>
-                <uri></uri>
-            </address>
-        </author>
+	<phone>+81-45-342-7230</phone>
+	<email>yusuke.doi@toshiba.co.jp</email>
+	<uri></uri>
+      </address>
+    </author>
 
-        <date month="August" year="2012"/>
+    <author initials="M." surname="Gillmore"
+	    fullname="Matthew Gillmore">
+      <organization>Itron, Inc</organization>
 
-        <area>FIXME</area>
-        <workgroup>FIXME</workgroup>
-        <keyword>FIXME</keyword>
-        <abstract>
-            <t>FIXME</t>
-        </abstract>
-</front>
+      <address>
+	<postal>
+	  <street>2111 N Molter Rd.</street>
+	  <city>Liberty Lake</city> <region>WA</region>
+	  <code>99019</code>
+	  <country>USA</country>
+	</postal>
 
-<middle>
-<?rfc include="middle.xml"?>
-</middle>
+	<email>matthew.gillmore@itron.com</email>
+      </address>
+    </author>
 
-<back>
+
+    <date month="October" year="2013"/>
+
+    <area>rtg</area>
+    <workgroup>roll</workgroup>
+    <keyword>MPL, DHCPv6</keyword>
+    <abstract>
+      <t>
+This draft is to define a way to configure MPL parameter via DHCPv6 option.
+      </t>
+    </abstract>
+  </front>
+
+  <middle>
+    <?rfc include="middle.xml"?>
+  </middle>
+
+  <back>
     <references title="Normative References">
-        <?rfc include="../refs/reference.RFC.2119.xml"?>
+      <?rfc include="../refs/reference.RFC.3315.xml"?>
+      <!-- ?rfc include="refs/reference.RFC.6282.xml"? -->
+      <?rfc include="../refs/reference.I-D.draft-ietf-roll-trickle-mcast-04.xml"?>
     </references>
-</back>
+<!--
+    <references title="Non-Normative References">
+      <rfc include="refs/reference.">
+    </references>
+-->
+    <?rfc include="back.xml"?>
+  </back>
 </rfc>

@@ -1,0 +1,9 @@
+# Update History
+
+ - C flag is removed and wildcard shall be identified by optlen
+ - Added some description on update of MPL parameters
+ - Clearly stated there shall not be two or more configuration for an MPL domain and option order is not significant.
+
+# Acknowledgements
+
+The authors thank Richard Kelsey and Yoshi Ohba for technical advices to improve this draft.

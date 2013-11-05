@@ -1,4 +1,143 @@
-# introduction
+# Introduction
 
-TBD
+Multicast Protocol for Low power and Lossy Networks [(MPL)](#I-D.ietf-roll-trickle-mcast) defines a protocol to make a multicast network among low power and lossy network i.e. wireless mesh networks. MPL has various parameters to control its behavior and tradeoff between end-to-end delay and network utilization. In some environments, the parameters shall be configured carefully to meet each environment and requirement. According to the MPL draft section 5.4, the parameter should be same for all nodes within an MPL domain. And the MPL draft does not define a method to configure it.
+
+Some managed wireless mesh networks may have a DHCP server to configure network parameters with DHCP relay in each node. MPL parameters shall be considered as a part of network parameters (parameter shall match within an MPL domain). This document is to define the way to distribute parameters for MPL forwarders as a simple [DHCPv6](#RFC3315) option.
+
+# MPL Parameter Configuration Option
+
+Per MPL domain, there are following 10 parameters. An MPL domain is defined by an MPL domain address.
+
+ - PROACTIVE_FORWARDING
+ - SEED_SET_ENTRY_LIFETIME
+ - DATA_MESSAGE_IMIN
+ - DATA_MESSAGE_IMAX
+ - DATA_MESSAGE_K
+ - DATA_MESSAGE_TIMER_EXPIRATIONS
+ - CONTROL_MESSAGE_IMIN
+ - CONTROL_MESSAGE_IMAX
+ - CONTROL_MESSAGE_K
+ - CONTROL_MESSAGE_TIMER_EXPIRATIONS
+
+One network may have multiple MPL domains with different configuration. To configure plural of MPL domains via DHCP, there may be more than one MPL Parameter Configuration Option given to DHCP clients from a DHCP server.
+
+## Unsigned Short Floating Point
+
+MPL has many timer parameters. Expected range of the timers depends on the network topology or MAC/PHY nature. To accommodate wide range of timer values efficiently, the MPL Parameter Configuration Option uses base-10 unsigned short floating point number with 3-bit exponent and 13-bit significand defined as follows (exp. stands for exponent).
+
+     0                   1           
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    | exp.|      significand        |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+The represented value is (significand) * 10^(exp.). Minimum exponent is 0 (binary 000) and maximum is 6 (binary 110). exp=7 (binary 111) is reserved for future use. Minimum significand is 0 (all 0) and maximum is 8191 (all 1).
+
+Unlike IEEE754 half precision floating point (binary16), there is no sign bit (no negative value for a timer), exponent is not biased (no fractional value for a timer), no implicit leading 1 in siginificand, and base is 10. Therefore, there could be more than one representation for a value.
+
+Followings are examples of common timer values represented by unit of milliseconds.
+
+One second (1,000 ms.):
+:     exp = 3, significand = 1. 0x6001.
+One minute (60,000 ms.):
+:     exp = 4, significand = 6, 0x8006.
+One hour (3,600,000 ms.):
+:     exp = 5, significand = 36, 0xa024.
+One day (86,400,000 ms.):
+:     exp = 5, significand = 864, 0xa360
+
+Maximum timer length represented by unsigned short floating point with millisecond precision is 8191*10^6 milliseconds (13 weeks 3 days 19 hours 16 minutes 40 seconds).
+
+With exponent and significand, an unsigned short floating point (usfp) can be encoded as follows.
+
+    usfp = (exponent << 13)|(0x1fff & significand);
+
+## MPL Parameter Configuration Option Format
+
+To distribute a configuration of an MPL domain or a default value for all MPL domains (wildcard) under the network managed by the DHCP server, this document defines a DHCPv6 option format as follows. Short floating point format is used to describe wide range of timer values.
+
+
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |    OPTION_MPL_PARAMETERS      |          option_len           |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |P| Z |   C_K   | Z2  |  DM_K   |         SE_LIFETIME           |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |         DM_IMIN               |          DM_IMAX              |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |         DM_T_EXP              |          C_IMIN               |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |         C_IMAX                |          C_T_EXP              |     
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+    (if option_len = 32 )
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |          MPL Domain Address  (128bits)                        |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |          (cont'ed)                                            |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |          (cont'ed)                                            |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |          (cont'ed)                                            |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+`OPTION_MPL_PARAMETERS`:
+:    not yet assigned.
+`option_len`:
+:    Length of the option. It SHOULD be 16 (without MPL domain address) or 32 (with MPL domain address)
+`P` (1 bit):
+:    A flag to indicate PROACTIVE_FORWARDING
+`Z` (1 bit)
+:    Reserved. Should be 0.
+`C_K` (5 bits):
+:    Value of CONTROL_MESSAGE_K.
+`Z2` (3 bit)
+:    Reserved. Should be all 0.
+`DM_K` (5 bits):
+:    Value of DATA_MESSAGE_K.
+`SE_LIFETIME`:
+:    SEED_SET_ENTRY_LIFETIME. The value is milliseconds in unsigned short floating point.
+`DM_IMIN`:
+:    Value of DATA_MESSAGE_IMIN. The value is milliseconds in unsigned short floating point.
+`DM_IMAX`:
+:    Value of DATA_MESSAGE_IMAX. The value is milliseconds in unsigned short floating point.
+`DM_T_EXP`:
+:    Value of DATA_MESSAGE_TIMER_EXPIRATIONS. The value is milliseconds in unsigned short floating point.
+`C_IMIN`:
+:    Value of CONTROL_MESSAGE_IMIN. The value is milliseconds in unsigned short floating point.
+`C_IMAX`:
+:    Value of CONTROL_MESSAGE_IMAX. The value is milliseconds in unsigned short floating point.
+`C_T_EXP`:
+:    Value of CONTROL_MESSAGE_TIMER_EXPIRATIONS. The value is milliseconds in unsigned short floating point.
+
+# Operation of MPL Forwarders
+
+As a node receives MPL parameter configuration option, the node SHOULD join the MPL domain given by the option and act as an MPL forwarder.
+Nodes SHOULD configure MPL forwarders when it joins to the MPL
+domain with the given parameters.
+
+The priority of MPL Parameter configuration applied for an MPL Domain is as follows (high to low).
+
+ - Specific MPL Parameter Configuration to the MPL Domain (optlen=32)
+ - Wildcard MPL Parameter Configuration (optlen=16)
+ - Default configuration given in the MPL specification.
+
+There SHALL be no more than one MPL parameter configuration option for a MPL domain or the wildcard. Thus, the order of DHCPv6 option in the packet has no effect on precedence. 
+
+The MPL parameters given in this option is only applicable for new MPL domains. Existing active MPL forwarder instances SHOULD NOT be updated.
+
+A node MAY leave from an MPL domain if the node is attached to the MPL domain according to previously received MPL parameter configuration option, and, the node received updated MPL parameter configuration option without specific configuration option for the MPL domain. 
+
+# IANA Considerations
+
+A DHCPv6 option code for MPL Parameter Configuration Option needs to be assigned from IANA.
+
+# Security Considerations
+
+Forged option may cause too many MAC broadcasting. Reasonable bound of
+parameters (not too high K, not too low IMIN) may be defined by
+implementations or derived from MAC/PHY specifications.
+DHCP server or the network itself shall be trusted by
+some means including network access control or DHCP authentications.
 

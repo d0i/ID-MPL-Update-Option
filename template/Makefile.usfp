@@ -1,0 +1,3 @@
+
+usfp: usfp.c Makefile.usfp
+	gcc -o usfp -DUSFP_TEST_MAIN usfp.c
