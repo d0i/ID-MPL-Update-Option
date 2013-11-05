@@ -3,6 +3,7 @@ SRC=middle.pdc back.pdc
 TITLE=$(shell grep docName template.xml | sed -e 's/.*docName=\"//' -e 's/\">//')
 PANDOC2RFC=../ext/pandoc2rfc/pandoc2rfc
 TRANSFORM_XSL=../ext/pandoc2rfc/transform.xsl
+SINGLE_XML=../ext/pandoc2rfc-old/xml-single
 .PHONY: txt html xml clean realclean
 
 title::
@@ -27,7 +28,8 @@ draft.html: 	$(SRC) template.xml
 	bash $(PANDOC2RFC) -t template.xml -x $(TRANSFORM_XSL) -M $(SRC)
 
 draft.xml:	$(SRC) template.xml
-	bash $(PANDOC2RFC) -t template.xml -x $(TRANSFORM_XSL) -X $(SRC)
+	#bash $(PANDOC2RFC) -t template.xml -x $(TRANSFORM_XSL) -X $(SRC)
+	$(SINGLE_XML) template.xml > draft.xml
 
 $(TITLE).txt:	draft.txt
 	cp $< $@
