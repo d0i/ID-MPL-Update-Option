@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<rfc ipr="trust200902" category="info" docName="draft-doi-template-tbd-00">
+<?rfc toc="yes"?>         <!-- generate a table of contents -->
+<?rfc symrefs="yes"?>     <!-- use anchors instead of numbers for references -->
+<?rfc sortrefs="yes" ?>   <!-- alphabetize the references -->
+<?rfc compact="yes" ?>    <!-- conserve vertical whitespace -->
+<?rfc subcompact="no" ?>  <!-- but keep a blank line between list items -->
+ <front>
+        <title abbrev="FIXME">FIXME</title>
+
+        <author initials="Y." surname="Doi"
+                fullname="Yusuke Doi">
+            <organization>TOSHIBA Corporation</organization>
+
+            <address>
+                <postal>
+                    <street>Komukai Toshiba Cho 1</street>
+                    <street>Saiwai-Ku</street>
+                    <city>Kawasaki</city> <region>Kanagawa</region>
+                    <code>2128582</code>
+                    <country>JAPAN</country>
+                </postal>
+
+                <phone>+81-45-342-7230</phone>
+                <email>yusuke.doi@toshiba.co.jp</email>
+                <uri></uri>
+            </address>
+        </author>
+
+        <date month="August" year="2012"/>
+
+        <area>FIXME</area>
+        <workgroup>FIXME</workgroup>
+        <keyword>FIXME</keyword>
+        <abstract>
+            <t>FIXME</t>
+        </abstract>
+</front>
+
+<middle>
+<?rfc include="middle.xml"?>
+</middle>
+
+<back>
+    <references title="Normative References">
+        <?rfc include="../refs/reference.RFC.2119.xml"?>
+    </references>
+</back>
+</rfc>

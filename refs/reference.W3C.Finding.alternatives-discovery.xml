@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='W3C.Finding.alternatives-discovery'
+           target='http://www.w3.org/2001/tag/doc/alternatives-discovery.html'>
+<front>
+<title>On Linking Alternative Representations To Enable Discovery And Publishing</title>
+
+<author initials='T.' surname='Raman' fullname='T. V. Raman'>
+    <organization />
+</author>
+
+
+<date month='November' day='1' year='2006' />
+</front>
+
+<seriesInfo name='World Wide Web Consortium Finding' value='Finding-alternatives-discovery' />
+<format type='HTML' target='http://www.w3.org/2001/tag/doc/alternatives-discovery.html#id2261672' />
+</reference>
