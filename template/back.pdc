@@ -1,8 +1,24 @@
 # Update History
 
- - C flag is removed and wildcard shall be identified by optlen
- - Added some description on update of MPL parameters
- - Clearly stated there shall not be two or more configuration for an MPL domain and option order is not significant.
+Updates on 03 to 04:
+
+ * Added more sections according to dhc-options-guidelines
+ * Removed no update requirement on MPL forwarder behavior
+ * Added reference to jiang-dhc-stateless-reconfiguration-
+
+Updates on 02 to 03:
+
+ * C flag is removed and wildcard shall be identified by optlen
+ * Added some description on update of MPL parameters
+ * Clearly stated there shall not be two or more configuration for an MPL domain and option order is not significant.
+
+Updates on 01 to 02:
+
+ * Added co-author
+
+Updates on 00 to 01:
+
+ * Corrected target area, track, etc.
 
 # Acknowledgements
 

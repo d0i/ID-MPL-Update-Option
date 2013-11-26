@@ -111,11 +111,17 @@ To distribute a configuration of an MPL domain or a default value for all MPL do
 `C_T_EXP`:
 :    Value of CONTROL_MESSAGE_TIMER_EXPIRATIONS. The value is milliseconds in unsigned short floating point.
 
-# Operation of MPL Forwarders
+## DHCPv6 Client Behavior
 
-As a node receives MPL parameter configuration option, the node SHOULD join the MPL domain given by the option and act as an MPL forwarder.
-Nodes SHOULD configure MPL forwarders when it joins to the MPL
-domain with the given parameters.
+Clients MAY request MPL Parameter Configuration Option, as described in [RFC3315](#RFC3315), sections 17.1.1, 18.1.1, 18.1.3, 18.1.4, 18.1.5 and 22.7. As a convenience to the reader, we mention here that the client includes requested option codes in Option Request Option. 
+
+Clients MUST discard MPL Parameter Configuration Option if it is invalid (i.e. it sets reserved bits or it has timers with reserved exp=7 in Unsigned Short Floating Point).
+
+## MPL Forwarder Behavior
+
+If a DHCPv6 client requests and receives MPL parameter configuration option, the node SHOULD join the MPL domain given by the option and act as an MPL forwarder.
+Nodes SHOULD configure MPL forwarders with the given parameters when it joins to the MPL
+domain.
 
 The priority of MPL Parameter configuration applied for an MPL Domain is as follows (high to low).
 
@@ -125,9 +131,20 @@ The priority of MPL Parameter configuration applied for an MPL Domain is as foll
 
 There SHALL be no more than one MPL parameter configuration option for a MPL domain or the wildcard. Thus, the order of DHCPv6 option in the packet has no effect on precedence. 
 
-The MPL parameters given in this option is only applicable for new MPL domains. Existing active MPL forwarder instances SHOULD NOT be updated.
-
 A node MAY leave from an MPL domain if the node is attached to the MPL domain according to previously received MPL parameter configuration option, and, the node received updated MPL parameter configuration option without specific configuration option for the MPL domain. 
+
+MPL parameter may be updated occasionally. With stateful DHCPv6, updates can be done when the renewal timer expires. However, on stateless DHCPv6 there are no way to update the parameters properly.
+There is a DHCPv6 option to push updates [](#I-D.jiang-dhc-stateless-reconfiguration).
+
+## DHCPv6 Server Behavior
+
+Sections 17.2.2 and 18.2 of [RFC3315](#RFC3315) govern server operation in regards to option assignment. As a convenience to the reader, we mention here that the server will send MPL Parameter Configuration Option only if configured with specific value for MPL Parameter Configuration Option and the client requested it.
+
+Servers MUST ignore incoming MPL Parameter Configuration Option.
+
+## DHCPv6 Relay Behavior 
+
+It's never appropriate for a relay agent to add options to a message heading toward the client, and relay agents don't actually construct Relay-Reply messages anyway. There are no additional requirements for relays.
 
 # IANA Considerations
 
