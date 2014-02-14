@@ -3,8 +3,8 @@
 Updates on 03 to 04:
 
  * Added more sections according to dhc-options-guidelines
- * Removed no update requirement on MPL forwarder behavior
- * Added reference to jiang-dhc-stateless-reconfiguration-
+ * Removed 'no update' requirement on MPL forwarder behavior
+ * Added reference to I-D.jiang-dhc-stateless-reconfiguration
 
 Updates on 02 to 03:
 
