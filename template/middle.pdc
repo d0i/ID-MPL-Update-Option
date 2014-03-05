@@ -132,8 +132,9 @@ There SHALL be no more than one MPL Parameter Configuration Option for a MPL dom
 
 A node MAY leave from an MPL domain if the following two conditions are satisfied. 1) The MPL domain is configured by a DHCPv6 option from a DHCPv6 server previously. 2) The node has received an updated MPL Parameter Configuration Option without a configuration for the MPL domain.
 
-MPL parameter may be updated occasionally. With stateful DHCPv6, updates can be done when the renewal timer expires. However, on stateless DHCPv6 there are no way to update the parameter set properly.
-There is a DHCPv6 option proposal to push updates [](#I-D.jiang-dhc-stateless-reconfiguration).
+MPL parameter may be updated occasionally. With stateful DHCPv6, updates can be done when the renewal timer expires. [Information Refresh Time Option](#RFC4242) shall be used to keep each forwarders updated. 
+
+To reduce periodical update traffic a node may try to use very long interval between updates. In the case, reconfigure shall be used to keep forwarder parameter sets synchronized. For stateless DHCPv6, [](#I-D.jiang-dhc-stateless-reconfiguration) may be used (if approved).
 
 ## DHCPv6 Server Behavior
 

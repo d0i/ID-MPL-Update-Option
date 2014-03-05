@@ -2,7 +2,8 @@
 
 Updates on 04 to 05:
 
- * Editorial fix and some clarification
+ * Editorial fix and some clarification (thanks to Ted Lemon and folks in IESG/RFC-Editor Language Editing Session)
+ * Added reference to RFC4242 and corrected renewal descriptions on MPL forwarder behavior (thanks to Tatsuya Jinmei for pointing it out)
 
 Updates on 03 to 04:
 
