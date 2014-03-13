@@ -1,30 +1,5 @@
 # Update History
 
-Updates on 04 to 05:
+Updates on draft-doi-roll-mpl-configuration-05 to draft-ietf-roll-mpl-configuration-00:
 
- * Editorial fix and some clarification (thanks to Ted Lemon and folks in IESG/RFC-Editor Language Editing Session)
- * Added reference to RFC4242 and corrected renewal descriptions on MPL forwarder behavior (thanks to Tatsuya Jinmei for pointing it out)
-
-Updates on 03 to 04:
-
- * Added more sections according to dhc-options-guidelines
- * Removed 'no update' requirement on MPL forwarder behavior
- * Added reference to I-D.jiang-dhc-stateless-reconfiguration
-
-Updates on 02 to 03:
-
- * C flag is removed and wildcard shall be identified by optlen
- * Added some description on update of MPL parameters
- * Clearly stated there shall not be two or more configuration for an MPL domain and option order is not significant.
-
-Updates on 01 to 02:
-
- * Added co-author
-
-Updates on 00 to 01:
-
- * Corrected target area, track, etc.
-
-# Acknowledgements
-
-The authors thank Richard Kelsey and Yoshi Ohba for technical advices to improve this draft.
+ * I-D renamed.

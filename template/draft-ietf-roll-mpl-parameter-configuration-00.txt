@@ -78,8 +78,8 @@ Table of Contents
      5.1.  Normative References  . . . . . . . . . . . . . . . . . . . 8
      5.2.  Non-Normative References  . . . . . . . . . . . . . . . . . 8
    Appendix A.  Update History . . . . . . . . . . . . . . . . . . . . 8
-   Appendix B.  Acknowledgements . . . . . . . . . . . . . . . . . . . 9
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 9
+
 
 
 
@@ -438,8 +438,8 @@ Internet-Draft            MPL Conf. for DHCPv6                March 2014
 
 Appendix A.  Update History
 
-   Updates on 04 to 05:
-
+   Updates on draft-doi-roll-mpl-configuration-05 to
+   draft-ietf-roll-mpl-configuration-00:
 
 
 
@@ -449,60 +449,7 @@ Doi & Gillmore         Expires September 12, 2014               [Page 8]
 Internet-Draft            MPL Conf. for DHCPv6                March 2014
 
 
-   o  Editorial fix and some clarification (thanks to Ted Lemon and
-      folks in IESG/RFC-Editor Language Editing Session)
-
-   o  Added reference to RFC4242 and corrected renewal descriptions on
-      MPL forwarder behavior (thanks to Tatsuya Jinmei for pointing it
-      out)
-
-   Updates on 03 to 04:
-
-   o  Added more sections according to dhc-options-guidelines
-
-   o  Removed 'no update' requirement on MPL forwarder behavior
-
-   o  Added reference to I-D.jiang-dhc-stateless-reconfiguration
-
-   Updates on 02 to 03:
-
-   o  C flag is removed and wildcard shall be identified by optlen
-
-   o  Added some description on update of MPL parameters
-
-   o  Clearly stated there shall not be two or more configuration for an
-      MPL domain and option order is not significant.
-
-   Updates on 01 to 02:
-
-   o  Added co-author
-
-   Updates on 00 to 01:
-
-   o  Corrected target area, track, etc.
-
-
-Appendix B.  Acknowledgements
-
-   The authors thank Richard Kelsey and Yoshi Ohba for technical advices
-   to improve this draft.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Doi & Gillmore         Expires September 12, 2014               [Page 9]
-
-Internet-Draft            MPL Conf. for DHCPv6                March 2014
+   o  I-D renamed.
 
 
 Authors' Addresses
@@ -553,8 +500,5 @@ Authors' Addresses
 
 
 
-
-
-
-Doi & Gillmore         Expires September 12, 2014              [Page 10]
+Doi & Gillmore         Expires September 12, 2014               [Page 9]
 
