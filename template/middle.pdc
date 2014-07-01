@@ -119,8 +119,8 @@ Clients MUST discard MPL Parameter Configuration Option if it is invalid (i.e. i
 
 ## MPL Forwarder Behavior
 
-If a DHCPv6 client requests and receives MPL Parameter Configuration Option, the node SHOULD join the MPL domain given by the option and act as an MPL forwarder.
-Each node SHOULD configure its MPL forwarder with the given parameter set for the MPL domain.
+If a DHCPv6 client requests and receives MPL Parameter Configuration Option, the node MAY join the MPL domain given by the option and act as an MPL forwarder.
+Each joining node SHOULD configure its MPL forwarder with the given parameter set for the MPL domain.
 
 The priority of MPL Parameter Configuration applied for an MPL Domain is as follows (high to low).
 
@@ -140,11 +140,17 @@ To reduce periodical update traffic a node may try to use very long interval bet
 
 Sections 17.2.2 and 18.2 of [RFC3315](#RFC3315) govern server operation in regards to option assignment. As a convenience to the reader, we mention here that the server will send MPL Parameter Configuration Option only if configured with specific value for MPL Parameter Configuration Option and the client requested it.
 
-Servers MUST ignore incoming MPL Parameter Configuration Option.
+Servers SHALL ignore incoming MPL Parameter Configuration Option.
 
 ## DHCPv6 Relay Behavior 
 
 It's never appropriate for a relay agent to add options to a message heading toward the client, and relay agents don't actually construct Relay-Reply messages anyway. There are no additional requirements for relays.
+
+## Operational Considerations
+
+A parameter set for an MPL domain SHOULD NOT updated more often than two times of expected refresh interval.
+
+If a node with MPL forwarder configured by MPL Parameter configuration Option failed to refresh the option for two times of information refresh time, it SHALL suspend the MPL forwarders of MPL domains configured by the option. MPL forwarders configured by other methods such as static configuration file SHALL NOT be suspended.
 
 # IANA Considerations
 

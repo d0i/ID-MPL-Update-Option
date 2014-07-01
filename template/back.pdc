@@ -1,5 +1,24 @@
 # Update History
 
+Updates on draft-doi-roll-mpl-configuration-05 to draft-ietf-roll-mpl-configuration-01:
+
+ * Operational considerations (normative) and appendix considerations (non-normative) are added (Issue #157)
+ * More control on nodes / allow constrained nodes to ignore the configuration: "the node s/SHOULD/MAY/ join the MPL domain given by the option" (Issue #158)
+
 Updates on draft-doi-roll-mpl-configuration-05 to draft-ietf-roll-mpl-configuration-00:
 
  * I-D renamed.
+
+# Considerations on Inconsistent Parameter Set
+
+This draft introduces dynamic update of MPL parameters. Because the
+update process is not synchronized, nodes may have inconsistent
+parameter set.
+
+Inconsistent parameter may reduce performance. On the other hand, it
+shall work as long as both parameter set are reasonable parameter set
+for a given communication load. As motivations for parameter update
+are update on environment, node density, or communication load,
+operators of MPL networks shall be aware of unupdated nodes and make
+sure old and new parameter sets are reasonable for expected refresh
+intervals.

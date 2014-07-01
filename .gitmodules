@@ -1,3 +1,0 @@
-[submodule "ext/pandoc2rfc"]
-	path = ext/pandoc2rfc
-	url = https://github.com/d0i/pandoc2rfc.git
