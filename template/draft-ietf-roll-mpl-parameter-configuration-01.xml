@@ -1,0 +1,535 @@
+<?xml version="1.0" ?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<rfc ipr="trust200902" category="std" docName="draft-ietf-roll-mpl-parameter-configuration-01">
+  <?rfc toc="yes"?>         <!-- generate a table of contents -->
+  <?rfc symrefs="yes"?>     <!-- use anchors instead of numbers for references -->
+  <?rfc sortrefs="yes" ?>   <!-- alphabetize the references -->
+  <?rfc compact="yes" ?>    <!-- conserve vertical whitespace -->
+  <?rfc subcompact="no" ?>  <!-- but keep a blank line between list items -->
+  <front>
+    <title abbrev="MPL Conf. for DHCPv6">MPL Parameter Configuration Option for DHCPv6</title>
+
+    <author initials="Y." surname="Doi"
+	    fullname="Yusuke Doi">
+      <organization>TOSHIBA Corporation</organization>
+
+      <address>
+	<postal>
+	  <street>Komukai Toshiba Cho 1</street>
+	  <street>Saiwai-Ku</street>
+	  <city>Kawasaki</city> <region>Kanagawa</region>
+	  <code>2128582</code>
+	  <country>JAPAN</country>
+	</postal>
+
+	<phone>+81-45-342-7230</phone>
+	<email>yusuke.doi@toshiba.co.jp</email>
+	<uri></uri>
+      </address>
+    </author>
+
+    <author initials="M." surname="Gillmore"
+	    fullname="Matthew Gillmore">
+      <organization>Itron, Inc</organization>
+
+      <address>
+	<postal>
+	  <street>2111 N Molter Rd.</street>
+	  <city>Liberty Lake</city> <region>WA</region>
+	  <code>99019</code>
+	  <country>USA</country>
+	</postal>
+
+	<email>matthew.gillmore@itron.com</email>
+      </address>
+    </author>
+
+
+    <date month="July" year="2014"/>
+
+    <area>rtg</area>
+    <workgroup>roll</workgroup>
+    <keyword>MPL, DHCPv6</keyword>
+    <abstract>
+      <t>
+This draft defines a way to configure MPL parameter set via DHCPv6 option. MPL has a set of parameters to control its behavior, and the parameter set is often configured as a network-wide parameter because the parameter set should be identical for each MPL forwarder in an MPL domain. Using the MPL Parameter Configuration Option defined in this document, a network can be configured with a single set of MPL parameter easily.
+      </t>
+    </abstract>
+  </front>
+
+  <middle>
+  
+<section title="Introduction" anchor="introduction">
+  
+  <t>
+    Multicast Protocol for Low power and Lossy Networks
+    <xref target="I-D.ietf-roll-trickle-mcast">(MPL)</xref> defines a
+    protocol to make a multicast network among low power and lossy
+    network i.e. wireless mesh networks. MPL has a set of parameters to
+    control its behavior and tradeoff between end-to-end delay and
+    network utilization. In most environments, the default parameters
+    are acceptable. However, in some environments, the parameter set
+    must be configured carefully in order to meet the requirements of
+    each environment. According to the MPL draft section 5.4, each
+    parameter in the set should be same for all nodes within an MPL
+    domain. And the MPL draft does not define a method to configure the
+    MPL parameter set.
+  </t>
+  <t>
+    Some managed wireless mesh networks may have a DHCP server to
+    configure network parameters. MPL parameter set shall be considered
+    as a part of network parameters (nodes in an MPL domain should use
+    an identical parameter set). This document is to define the way to
+    distribute parameter sets for MPL forwarders as a simple
+    <xref target="RFC3315">DHCPv6</xref> option.
+  </t>
+</section>
+<section title="MPL Parameter Configuration Option" anchor="mpl-parameter-configuration-option">
+  
+  <t>
+    Per MPL domain, there are following 10 parameters. An MPL domain is
+    defined by an MPL domain address.
+  </t>
+  <t><list style="symbols">
+    <t>
+      
+        PROACTIVE_FORWARDING
+      
+    </t>
+    <t>
+      
+        SEED_SET_ENTRY_LIFETIME
+      
+    </t>
+    <t>
+      
+        DATA_MESSAGE_IMIN
+      
+    </t>
+    <t>
+      
+        DATA_MESSAGE_IMAX
+      
+    </t>
+    <t>
+      
+        DATA_MESSAGE_K
+      
+    </t>
+    <t>
+      
+        DATA_MESSAGE_TIMER_EXPIRATIONS
+      
+    </t>
+    <t>
+      
+        CONTROL_MESSAGE_IMIN
+      
+    </t>
+    <t>
+      
+        CONTROL_MESSAGE_IMAX
+      
+    </t>
+    <t>
+      
+        CONTROL_MESSAGE_K
+      
+    </t>
+    <t>
+      
+        CONTROL_MESSAGE_TIMER_EXPIRATIONS
+      
+    </t>
+  </list></t>
+  <t>
+    One network may have multiple MPL domains with different
+    configurations. To configure more than one MPL domain via DHCP,
+    there may be more than one MPL Parameter Configuration Option given
+    to DHCP clients from a DHCP server.
+  </t>
+  <section title="Unsigned Short Floating Point" anchor="unsigned-short-floating-point">
+    
+    <t>
+      MPL has many timer parameters. Expected range of the timers
+      depends on the network topology or MAC/PHY nature. To accommodate
+      wide range of timer values efficiently, the MPL Parameter
+      Configuration Option uses base-10 unsigned short floating point
+      number with 3-bit exponent and 13-bit significand defined as
+      follows (exp. stands for exponent).
+    </t>
+    <figure><artwork>
+ 0                   1           
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+| exp.|      significand        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</artwork></figure>
+    <t>
+      The represented value is (significand) * 10^(exp.). The minimum
+      exponent is 0 (binary 000) and the maximum is 6 (binary 110).
+      exp=7 (binary 111) is reserved for future use. The minimum
+      significand is 0 (all 0) and the maximum is 8191 (all 1).
+    </t>
+    <t>
+      Unlike IEEE754 half precision floating point (binary16), there is
+      no sign bit (no negative value for a timer), exponent is not
+      biased (no fractional value for a timer), no implicit leading 1 in
+      siginificand, and base is 10. Therefore, there could be more than
+      one representation for a value.
+    </t>
+    <t>
+      Followings are examples of common timer values represented by unit
+      of millisecond.
+    </t>
+    <t><list style="hanging">
+      <t hangText="One second (1,000 milliseconds):">
+          
+            exp = 3, significand = 1, 0x6001.
+          
+        </t>
+      <t hangText="One minute (60,000 milliseconds):">
+          
+            exp = 4, significand = 6, 0x8006.
+          
+        </t>
+      <t hangText="One hour (3,600,000 milliseconds):">
+          
+            exp = 5, significand = 36, 0xa024.
+          
+        </t>
+      <t hangText="One day (86,400,000 milliseconds):">
+          
+            exp = 5, significand = 864, 0xa360
+          
+        </t>
+    </list></t>
+    <t>
+      Maximum timer length represented by an unsigned short floating
+      point with millisecond precision is 8191 * 10^6 milliseconds (13
+      weeks 3 days 19 hours 16 minutes 40 seconds).
+    </t>
+    <t>
+      With exponent and significand, an unsigned short floating point
+      (usfp) can be encoded as follows.
+    </t>
+    <figure><artwork>
+usfp = (exponent &lt;&lt; 13)|(0x1fff &amp; significand);
+</artwork></figure>
+  </section>
+  <section title="MPL Parameter Configuration Option Format" anchor="mpl-parameter-configuration-option-format">
+    
+    <t>
+      To distribute a configuration of an MPL domain or a default value
+      for all MPL domains (wildcard) under the network managed by the
+      DHCP server, this document defines a DHCPv6 option format as
+      follows. Short floating point format is used to describe wide
+      range of timer values.
+    </t>
+    <figure><artwork>
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|    OPTION_MPL_PARAMETERS      |          option_len           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|P| Z |   C_K   | Z2  |  DM_K   |         SE_LIFETIME           |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         DM_IMIN               |          DM_IMAX              |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         DM_T_EXP              |          C_IMIN               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|         C_IMAX                |          C_T_EXP              |     
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+(if option_len = 32 )
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          MPL Domain Address  (128bits)                        |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          (cont'ed)                                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          (cont'ed)                                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|          (cont'ed)                                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</artwork></figure>
+    <t><list style="hanging">
+      <t hangText="OPTION_MPL_PARAMETERS:">
+          
+            DHCPv6 option identifier (not yet assigned).
+          
+        </t>
+      <t hangText="option_len:">
+          
+            Length of the option. It SHOULD be 16 (without MPL domain
+            address) or 32 (with MPL domain address)
+          
+        </t>
+      <t hangText="P (1 bit):">
+          
+            A flag to indicate PROACTIVE_FORWARDING
+          
+        </t>
+      <t hangText="Z (1 bit)">
+          
+            Reserved. Should be 0.
+          
+        </t>
+      <t hangText="C_K (5 bits):">
+          
+            CONTROL_MESSAGE_K.
+          
+        </t>
+      <t hangText="Z2 (3 bits)">
+          
+            Reserved. Should be all 0.
+          
+        </t>
+      <t hangText="DM_K (5 bits):">
+          
+            DATA_MESSAGE_K.
+          
+        </t>
+      <t hangText="SE_LIFETIME:">
+          
+            SEED_SET_ENTRY_LIFETIME. The unit is millisecond and the
+            type is unsigned short floating point.
+          
+        </t>
+      <t hangText="DM_IMIN:">
+          
+            DATA_MESSAGE_IMIN. The unit is millisecond and the type is
+            unsigned short floating point.
+          
+        </t>
+      <t hangText="DM_IMAX:">
+          
+            DATA_MESSAGE_IMAX. The unit is millisecond and the type is
+            unsigned short floating point.
+          
+        </t>
+      <t hangText="DM_T_EXP:">
+          
+            DATA_MESSAGE_TIMER_EXPIRATIONS. The unit is millisecond and
+            the type is unsigned short floating point.
+          
+        </t>
+      <t hangText="C_IMIN:">
+          
+            CONTROL_MESSAGE_IMIN. The unit is millisecond and the type
+            is unsigned short floating point.
+          
+        </t>
+      <t hangText="C_IMAX:">
+          
+            CONTROL_MESSAGE_IMAX. The unit is millisecond and the type
+            is unsigned short floating point.
+          
+        </t>
+      <t hangText="C_T_EXP:">
+          
+            CONTROL_MESSAGE_TIMER_EXPIRATIONS. The unit is millisecond
+            and the type is unsigned short floating point.
+          
+        </t>
+    </list></t>
+  </section>
+  <section title="DHCPv6 Client Behavior" anchor="dhcpv6-client-behavior">
+    
+    <t>
+      Clients MAY request MPL Parameter Configuration Option, as
+      described in <xref target="RFC3315">RFC3315</xref>, sections
+      17.1.1, 18.1.1, 18.1.3, 18.1.4, 18.1.5 and 22.7. As a convenience
+      to the reader, we mention here that the client includes requested
+      option codes in Option Request Option.
+    </t>
+    <t>
+      Clients MUST discard MPL Parameter Configuration Option if it is
+      invalid (i.e. it sets reserved bits or it has timers with reserved
+      exp=7 in Unsigned Short Floating Point).
+    </t>
+  </section>
+  <section title="MPL Forwarder Behavior" anchor="mpl-forwarder-behavior">
+    
+    <t>
+      If a DHCPv6 client requests and receives MPL Parameter
+      Configuration Option, the node MAY join the MPL domain given by
+      the option and act as an MPL forwarder. Each joining node SHOULD
+      configure its MPL forwarder with the given parameter set for the
+      MPL domain.
+    </t>
+    <t>
+      The priority of MPL Parameter Configuration applied for an MPL
+      Domain is as follows (high to low).
+    </t>
+    <t><list style="symbols">
+      <t>
+        
+          Specific MPL Parameter Configuration to the MPL Domain
+          (optlen=32)
+        
+      </t>
+      <t>
+        
+          Wildcard MPL Parameter Configuration (optlen=16)
+        
+      </t>
+      <t>
+        
+          Default configuration given in the MPL specification.
+        
+      </t>
+    </list></t>
+    <t>
+      There SHALL be no more than one MPL Parameter Configuration Option
+      for a MPL domain or the wildcard. Thus, the order of DHCPv6
+      options in the packet has no effect on precedence.
+    </t>
+    <t>
+      A node MAY leave from an MPL domain if the following two
+      conditions are satisfied. 1) The MPL domain is configured by a
+      DHCPv6 option from a DHCPv6 server previously. 2) The node has
+      received an updated MPL Parameter Configuration Option without a
+      configuration for the MPL domain.
+    </t>
+    <t>
+      MPL parameter may be updated occasionally. With stateful DHCPv6,
+      updates can be done when the renewal timer expires.
+      <xref target="RFC4242">Information Refresh Time Option</xref>
+      shall be used to keep each forwarders updated.
+    </t>
+    <t>
+      To reduce periodical update traffic a node may try to use very
+      long interval between updates. In the case, reconfigure shall be
+      used to keep forwarder parameter sets synchronized. For stateless
+      DHCPv6,
+      <xref target="I-D.jiang-dhc-stateless-reconfiguration"/>
+      may be used (if approved).
+    </t>
+  </section>
+  <section title="DHCPv6 Server Behavior" anchor="dhcpv6-server-behavior">
+    
+    <t>
+      Sections 17.2.2 and 18.2 of <xref target="RFC3315">RFC3315</xref>
+      govern server operation in regards to option assignment. As a
+      convenience to the reader, we mention here that the server will
+      send MPL Parameter Configuration Option only if configured with
+      specific value for MPL Parameter Configuration Option and the
+      client requested it.
+    </t>
+    <t>
+      Servers SHALL ignore incoming MPL Parameter Configuration Option.
+    </t>
+  </section>
+  <section title="DHCPv6 Relay Behavior" anchor="dhcpv6-relay-behavior">
+    
+    <t>
+      It's never appropriate for a relay agent to add options to a
+      message heading toward the client, and relay agents don't actually
+      construct Relay-Reply messages anyway. There are no additional
+      requirements for relays.
+    </t>
+  </section>
+  <section title="Operational Considerations" anchor="operational-considerations">
+    
+    <t>
+      A parameter set for an MPL domain SHOULD NOT updated more often
+      than two times of expected refresh interval.
+    </t>
+    <t>
+      If a node with MPL forwarder configured by MPL Parameter
+      configuration Option failed to refresh the option for two times of
+      information refresh time, it SHALL suspend the MPL forwarders of
+      MPL domains configured by the option. MPL forwarders configured by
+      other methods such as static configuration file SHALL NOT be
+      suspended.
+    </t>
+  </section>
+</section>
+<section title="IANA Considerations" anchor="iana-considerations">
+  
+  <t>
+    A DHCPv6 option code for MPL Parameter Configuration Option needs to
+    be assigned from IANA.
+  </t>
+</section>
+<section title="Security Considerations" anchor="security-considerations">
+  
+  <t>
+    A forged option may cause excessive layer-2 broadcasting.
+    Implementations should set reasonable bounds for each parameter. For
+    example, not too high K, not too low IMIN, etc. These may be
+    implementation dependent or may be derived from MAC/PHY
+    specifications. DHCP server or the network itself shall be trusted
+    by some means including network access control or DHCP
+    authentications.
+  </t>
+</section>
+
+
+  </middle>
+
+  <back>
+    <references title="Normative References">
+      <?rfc include="../refs/reference.RFC.3315.xml"?>
+      <?rfc include="../refs/reference.RFC.4242.xml"?>
+      <!-- ?rfc include="refs/reference.RFC.6282.xml"? -->
+      <?rfc include="../refs/reference.I-D.draft-ietf-roll-trickle-mcast-07.xml"?>
+    </references>
+    <references title="Non-Normative References">
+      <?rfc include="../refs/reference.I-D.draft-jiang-dhc-stateless-reconfiguration-01.xml"?>
+      <?rfc include="../refs/reference.I-D.ietf-dhc-option-guidelines.xml"?>
+    </references>
+<section title="Update History" anchor="update-history">
+  
+  <t>
+    Updates on draft-doi-roll-mpl-configuration-05 to
+    draft-ietf-roll-mpl-configuration-01:
+  </t>
+  <t><list style="symbols">
+    <t>
+      
+        Operational considerations (normative) and appendix
+        considerations (non-normative) are added (Issue #157)
+      
+    </t>
+    <t>
+      
+        More control on nodes / allow constrained nodes to ignore the
+        configuration: "the node s/SHOULD/MAY/ join the MPL domain
+        given by the option" (Issue #158)
+      
+    </t>
+  </list></t>
+  <t>
+    Updates on draft-doi-roll-mpl-configuration-05 to
+    draft-ietf-roll-mpl-configuration-00:
+  </t>
+  <t><list style="symbols">
+    <t>
+      
+        I-D renamed.
+      
+    </t>
+  </list></t>
+</section>
+<section title="Considerations on Inconsistent Parameter Set" anchor="considerations-on-inconsistent-parameter-set">
+  
+  <t>
+    This draft introduces dynamic update of MPL parameters. Because the
+    update process is not synchronized, nodes may have inconsistent
+    parameter set.
+  </t>
+  <t>
+    Inconsistent parameter may reduce performance. On the other hand, it
+    shall work as long as both parameter set are reasonable parameter
+    set for a given communication load. As motivations for parameter
+    update are update on environment, node density, or communication
+    load, operators of MPL networks shall be aware of unupdated nodes
+    and make sure old and new parameter sets are reasonable for expected
+    refresh intervals.
+  </t>
+</section>
+
+
+  </back>
+</rfc>
