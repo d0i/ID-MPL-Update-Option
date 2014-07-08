@@ -1,0 +1,5 @@
+- add MPL definition in abstract
+- describe why separate options are not appropriate
+- remove compressed data (+14 bytes)
+- split into three? (I don't think it's a good idea...)
+
