@@ -1,6 +1,11 @@
 # Update History
 
-Updates on draft-doi-roll-mpl-configuration-05 to draft-ietf-roll-mpl-configuration-01:
+Updates on draft-ietf-roll-mpl-configuration-01 to draft-ietf-roll-mpl-configuration-02:
+
+ * Short unsigned floating point is dropped (instead TUNIT) is introduced (#159)
+ * Packed value is removed and now every value has its own bytes (#159)
+
+Updates on draft-ietf-roll-mpl-configuration-00 to draft-ietf-roll-mpl-configuration-01:
 
  * Operational considerations (normative) and appendix considerations (non-normative) are added (Issue #157)
  * More control on nodes / allow constrained nodes to ignore the configuration: "the node s/SHOULD/MAY/ join the MPL domain given by the option" (Issue #158)

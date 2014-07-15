@@ -1,5 +1,12 @@
 - add MPL definition in abstract
-- describe why separate options are not appropriate
-- remove compressed data (+14 bytes)
-- split into three? (I don't think it's a good idea...)
+
+comments from jinmei-san
+
+
+> - すでにコメントあったように、floating pointフィールドはtricky過ぎな感
+>    じです。環境上どうしても必要ということなら、justificationを明記すべ
+>    きでしょう。
+> - option guideline draft (now RFC)、referencesに挙がってるけど引用され
+>    てないように見えます。
+> 
 
