@@ -21,21 +21,23 @@ html:	$(TITLE).html
 
 xml:	$(TITLE).xml
 
-draft.txt:	$(SRC) template.xml
-	bash $(PANDOC2RFC) -v -t template.xml -x $(TRANSFORM_XSL) $(SRC)
+draft.txt:	$(SRC) draft.xml
+	bash $(PANDOC2RFC) -v -t draft.xml -x $(TRANSFORM_XSL) $(SRC)
 
-draft.html: 	$(SRC) template.xml draft.txt
+draft.html: 	$(SRC) draft.xml draft.txt
 	env DISPLAY=:0 ../../pandoc2rfc/rfcmarkup url=file:///$(PWD)/draft.txt > draft.html
 
 draft.xml:	$(SRC) template.xml middle.xml back.xml
-	#bash $(PANDOC2RFC) -t template.xml -x $(TRANSFORM_XSL) -X $(SRC)
 	$(SINGLE_XML) template.xml > draft.xml
+	bash $(PANDOC2RFC) -t draft.xml -x $(TRANSFORM_XSL) -X $(SRC)
 
 middle.xml: middle.pdc
 	pandoc -t docbook -s middle.pdc | xsltproc --nonet ../ext/pandoc2rfc/transform.xsl - > middle.xml
+	#pandoc -t docbook -s middle.pdc | xsltproc --load-trace ../ext/pandoc2rfc/transform.xsl - > middle.xml
 
 back.xml: back.pdc
 	pandoc -t docbook -s back.pdc | xsltproc --nonet ../ext/pandoc2rfc/transform.xsl - > back.xml
+	#pandoc -t docbook -s back.pdc | xsltproc --load-trace ../ext/pandoc2rfc/transform.xsl - > back.xml
 
 $(TITLE).txt:	draft.txt
 	cp $< $@

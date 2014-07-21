@@ -2,8 +2,8 @@
 
 Updates on draft-ietf-roll-mpl-configuration-01 to draft-ietf-roll-mpl-configuration-02:
 
- * Short unsigned floating point is dropped (instead TUNIT) is introduced (#159)
- * Packed value is removed and now every value has its own bytes (#159)
+ * Short unsigned floating point is dropped (#159)
+ * Packed value is removed and now every value has its own byte(s) (#159)
 
 Updates on draft-ietf-roll-mpl-configuration-00 to draft-ietf-roll-mpl-configuration-01:
 

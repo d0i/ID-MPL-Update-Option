@@ -27,7 +27,11 @@ sub include($) {
         if ( /<\?rfc include=\"(.*)?\"\?>/ ) {
                 include $1; next;
         }
-        print;
+	if ( /<\?xml.*/ ){
+	    # do nothing
+	} else {
+	    print;
+	}
     }
     close($xml);
 }

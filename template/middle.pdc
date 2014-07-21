@@ -1,12 +1,10 @@
-CHECK TODO!
-
 # Introduction
 
 Multicast Protocol for Low power and Lossy Networks [(MPL)](#I-D.ietf-roll-trickle-mcast) defines a protocol to make a multicast network among low power and lossy network e.g. wireless mesh networks. MPL has a set of parameters to control an MPL domain. The parameter controls trade-off between end-to-end delay and network utilization. In most environments, the default parameters are acceptable. However, in some environments, the parameter set must be configured carefully in order to meet the requirements of each environment. According to the MPL draft section 5.4, each parameter in the set should be same for all nodes within an MPL domain. And the MPL draft does not define a method to configure the MPL parameter set.
 
 Some managed wireless mesh networks may have a DHCP server to configure network parameters. MPL parameter set shall be considered as a part of network parameters (nodes in an MPL domain should use an identical parameter set). And a parameter set are required to configure an MPL domain.
 
-This document is to define the way to distribute parameter sets for MPL forwarders as a simple [DHCPv6](#RFC3315) option.
+This document is to define the way to distribute parameter sets for MPL forwarders as a [DHCPv6](#RFC3315) option. This document is intended to follow [the guideline](#RFC7227).
 
 # MPL Parameter Configuration Option
 
