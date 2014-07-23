@@ -5,6 +5,7 @@ make option string of MPL parameter option (for udhcpd of busybox)
 """
 
 import types
+import socket
 
 def mkuint8hex(v):
     if not isinstance(v, types.IntType) or v < 0 or v > 255:
@@ -15,7 +16,10 @@ def mkuint16hex(v):
     if not isinstance(v, types.IntType) or v < 0 or v > 65535:
         raise ValueError
     return "%04x"%(v,)
-        
+def mkipv6addrhex(addrstr):
+    rL = []
+    raw_a = socket.inet_pton(socket.AF_INET6, addrstr)
+    return ''.join(map(lambda x: "%02x"%(ord(x),), raw_a))
 
 def mkoptstring(params):
     rstrL = []
@@ -52,3 +56,18 @@ if __name__ == '__main__':
         "C_T_EXP": 300
     }
     print mkoptstring(test_params)
+    test_params_addr = {
+        "P": True,
+        "TUNIT": 10,
+        "SE_LIFETIME": 6000,
+        "DM_K": 3,
+        "DM_IMIN": 200,
+        "DM_IMAX": 800,
+        "DM_T_EXP": 3000,
+        "C_K": 4,
+        "C_IMIN": 50,
+        "C_IMAX": 800,
+        "C_T_EXP": 300, 
+        "MPL_DOMAIN_ADDR": "2001:DB8:4001::1"
+    }
+    print mkoptstring(test_params_addr)
