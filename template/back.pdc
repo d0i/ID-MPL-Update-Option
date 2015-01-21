@@ -1,5 +1,10 @@
 # Update History
 
+Updates on draft-ietf-roll-mpl-configuration-02 to draft-ietf-roll-mpl-configuration-03:
+
+ * References updated
+ * Removed reference for DHCPv6 stateless reconfiguration as it has expired
+
 Updates on draft-ietf-roll-mpl-configuration-01 to draft-ietf-roll-mpl-configuration-02:
 
  * Short unsigned floating point is dropped (#159)

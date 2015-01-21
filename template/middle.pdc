@@ -6,6 +6,8 @@ Some managed wireless mesh networks may have a DHCP server to configure network 
 
 This document is to define the way to distribute parameter sets for MPL forwarders as a [DHCPv6](#RFC3315) option. This document is intended to follow [the guideline](#RFC7227).
 
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be interpreted as described in [](#RFC2119).
+
 # MPL Parameter Configuration Option
 
 Per MPL domain, there are following 10 parameters. An MPL domain is defined by an MPL domain address.
@@ -113,7 +115,7 @@ A node MAY leave from an MPL domain if the following two conditions are satisfie
 
 MPL parameter may be updated occasionally. With stateful DHCPv6, updates can be done when the renewal timer expires. [Information Refresh Time Option](#RFC4242) shall be used to keep each forwarders updated. 
 
-To reduce periodical update traffic a node may try to use very long interval between updates. In the case, reconfigure shall be used to keep forwarder parameter sets synchronized. For stateless DHCPv6, [](#I-D.jiang-dhc-stateless-reconfiguration) may be used (if approved).
+To reduce periodical update traffic a node may try to use very long interval between updates. In the case, reconfigure message may be used to keep forwarder parameter sets synchronized.
 
 ## DHCPv6 Server Behavior
 

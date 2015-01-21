@@ -1,0 +1,650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://dublincore.org/documents/2008/08/04/dc-html/">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index,nofollow" />
+    <meta name="creator" content="rfcmarkup version 1.96" />
+    <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+
+    <link rel="icon" href="" type="image/png" />
+    <link rel="shortcut icon" href="" type="image/png" />
+    <title>draft.txt - MPL Parameter Configuration Option for DHCPv6</title>
+    
+    
+    <style type="text/css">
+        body {
+            margin: 0px 8px;
+            font-size: 1em;
+        }
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+            font-weight: bold;
+            line-height: 0pt;
+            display: inline;
+            white-space: pre;
+            font-family: monospace;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        pre {
+            font-size: 1em;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        .pre {
+            white-space: pre;
+            font-family: monospace;
+        }
+        .header{
+            font-weight: bold;
+        }
+        .newpage {
+            page-break-before: always;
+        }
+        .invisible {
+            text-decoration: none;
+            color: white;
+        }
+        @media print {
+            body {
+                font-size: 10.5pt;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                font-size: 10.5pt;
+            }
+
+            a:link, a:visited {
+                color: inherit;
+                text-decoration: none;
+            }
+            .noprint {
+                display: none;
+            }
+        }
+        @media screen {
+            .grey, .grey a:link, .grey a:visited {
+                color: #777;
+            }
+            .docinfo {
+                background-color: #EEE;
+            }
+            .top {
+                border-top: 7px solid #EEE;
+            }
+            .bgwhite  { background-color: white; }
+            .bgred    { background-color: #F44; }
+            .bggrey   { background-color: #666; }
+            .bgbrown  { background-color: #840; }
+            .bgorange { background-color: #FA0; }
+            .bgyellow { background-color: #EE0; }
+            .bgmagenta{ background-color: #F4F; }
+            .bgblue   { background-color: #66F; }
+            .bgcyan   { background-color: #4DD; }
+            .bggreen  { background-color: #4F4; }
+
+            .legend   { font-size: 90%; }
+            .cplate   { font-size: 70%; border: solid grey 1px; }
+        }
+    </style>
+    <!--[if IE]>
+    <style>
+    body {
+       font-size: 13px;
+       margin: 10px 10px;
+    }
+    </style>
+    <![endif]-->
+
+    <script type="text/javascript"><!--
+    function addHeaderTags() {
+        var spans = document.getElementsByTagName("span");
+        for (var i=0; i < spans.length; i++) {
+            var elem = spans[i];
+            if (elem) {
+                var level = elem.getAttribute("class");
+                if (level == "h1" || level == "h2" || level == "h3" || level == "h4" || level == "h5" || level == "h6") {
+                    elem.innerHTML = "<"+level+">"+elem.innerHTML+"</"+level+">";               
+                }
+            }
+        }
+    }
+    var legend_html = "Colour legend:<br />      <table>         <tr><td>Unknown:</td>          <td><span class='cplate bgwhite'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft:</td>            <td><span class='cplate bgred'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Informational:</td>    <td><span class='cplate bgorange'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Experimental:</td>     <td><span class='cplate bgyellow'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Best Common Practice:</td><td><span class='cplate bgmagenta'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Proposed Standard:</td><td><span class='cplate bgblue'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Draft Standard:</td>   <td><span class='cplate bgcyan'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Standard:</td>         <td><span class='cplate bggreen'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Historic:</td>         <td><span class='cplate bggrey'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>         <tr><td>Obsolete:</td>         <td><span class='cplate bgbrown'>&nbsp;&nbsp;&nbsp;&nbsp;</span></td></tr>     </table>";
+    function showElem(id) {
+        var elem = document.getElementById(id);
+        elem.innerHTML = eval(id+"_html");
+        elem.style.visibility='visible';
+    }
+    function hideElem(id) {
+        var elem = document.getElementById(id);
+        elem.style.visibility='hidden';        
+        elem.innerHTML = "";
+    }
+    // -->
+    </script>
+</head>
+<body onload="addHeaderTags()">
+   <div style="height: 13px;">
+      <div onmouseover="this.style.cursor='pointer';"
+         onclick="showElem('legend');"
+         onmouseout="hideElem('legend')"
+         style="height: 6px; position: absolute;"
+         class="pre noprint docinfo "
+         title="Click for colour legend." >                                                                        </div>
+      <div id="legend"
+           class="docinfo noprint pre legend"
+           style="position:absolute; top: 4px; left: 4ex; visibility:hidden; background-color: white; padding: 4px 9px 5px 7px; border: solid #345 1px; "
+           onmouseover="showElem('legend');"
+           onmouseout="hideElem('legend');">
+      </div>
+   </div>
+
+<span class="pre noprint docinfo">                                                                        </span><br />
+<span class="pre noprint docinfo">                                                                        </span><br />
+<span class="pre noprint docinfo">                                                                        </span><br />
+<pre>
+roll                                                              Y. Doi
+Internet-Draft                                       TOSHIBA Corporation
+Intended status: Standards Track                             M. Gillmore
+Expires: July 25, 2015                                        Itron, Inc
+                                                        January 21, 2015
+
+
+             <span class="h1">MPL Parameter Configuration Option for DHCPv6</span>
+             <span class="h1">draft-ietf-roll-mpl-parameter-configuration-03</span>
+
+Abstract
+
+   This draft defines a way to configure a parameter set of MPL
+   (Multicast Protocol for Low power and Lossy Networks) via DHCPv6
+   option.  MPL has a set of parameters to control its behavior, and the
+   parameter set is often configured as a network-wide parameter because
+   the parameter set should be identical for each MPL forwarder in an
+   MPL domain.  Using the MPL Parameter Configuration Option defined in
+   this document, a network can be configured with a single set of MPL
+   parameter easily.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of <a href="../../pandoc2rfc/rfcmarkup?bcp=78">BCP 78</a> and <a href="../../pandoc2rfc/rfcmarkup?bcp=79">BCP 79</a>.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at <a href="http://datatracker.ietf.org/drafts/current/">http://datatracker.ietf.org/drafts/current/</a>.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on July 25, 2015.
+
+Copyright Notice
+
+   Copyright (c) 2015 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to <a href="../../pandoc2rfc/rfcmarkup?bcp=78">BCP 78</a> and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (<a href="http://trustee.ietf.org/license-info">http://trustee.ietf.org/license-info</a>) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires July 25, 2015                 [Page 1]</span>
+</pre><pre class='newpage'><a name="page-2" id="page-2" href="#page-2" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6              January 2015</span>
+
+
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in <a href="#section-4">Section 4</a>.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+Table of Contents
+
+   <a href="#section-1">1</a>.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-2">2</a>
+   <a href="#section-2">2</a>.  MPL Parameter Configuration Option  . . . . . . . . . . . . .   <a href="#page-3">3</a>
+     <a href="#section-2.1">2.1</a>.  MPL Parameter Configuration Option Format . . . . . . . .   <a href="#page-3">3</a>
+     <a href="#section-2.2">2.2</a>.  DHCPv6 Client Behavior  . . . . . . . . . . . . . . . . .   <a href="#page-5">5</a>
+     <a href="#section-2.3">2.3</a>.  MPL Forwarder Behavior  . . . . . . . . . . . . . . . . .   <a href="#page-5">5</a>
+     <a href="#section-2.4">2.4</a>.  DHCPv6 Server Behavior  . . . . . . . . . . . . . . . . .   <a href="#page-6">6</a>
+     <a href="#section-2.5">2.5</a>.  DHCPv6 Relay Behavior . . . . . . . . . . . . . . . . . .   <a href="#page-6">6</a>
+     <a href="#section-2.6">2.6</a>.  Operational Considerations  . . . . . . . . . . . . . . .   <a href="#page-6">6</a>
+   <a href="#section-3">3</a>.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   <a href="#page-7">7</a>
+   <a href="#section-4">4</a>.  Security Considerations . . . . . . . . . . . . . . . . . . .   <a href="#page-7">7</a>
+   <a href="#section-5">5</a>.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-7">7</a>
+     <a href="#section-5.1">5.1</a>.  Normative References  . . . . . . . . . . . . . . . . . .   <a href="#page-7">7</a>
+     <a href="#section-5.2">5.2</a>.  Non-Normative References  . . . . . . . . . . . . . . . .   <a href="#page-7">7</a>
+   <a href="#appendix-A">Appendix A</a>.  Update History . . . . . . . . . . . . . . . . . . .   <a href="#page-7">7</a>
+   <a href="#appendix-B">Appendix B</a>.  Considerations on Inconsistent Parameter Set . . . .   <a href="#page-8">8</a>
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-8">8</a>
+
+<span class="h2"><a name="section-1">1</a>.  Introduction</span>
+
+   Multicast Protocol for Low power and Lossy Networks (MPL)
+   [<a href="#ref-I-D.ietf-roll-trickle-mcast">I-D.ietf-roll-trickle-mcast</a>] defines a protocol to make a multicast
+   network among low power and lossy network e.g. wireless mesh
+   networks.  MPL has a set of parameters to control an MPL domain.  The
+   parameter controls trade-off between end-to-end delay and network
+   utilization.  In most environments, the default parameters are
+   acceptable.  However, in some environments, the parameter set must be
+   configured carefully in order to meet the requirements of each
+   environment.  According to the MPL draft <a href="#section-5.4">section 5.4</a>, each parameter
+   in the set should be same for all nodes within an MPL domain.  And
+   the MPL draft does not define a method to configure the MPL parameter
+   set.
+
+   Some managed wireless mesh networks may have a DHCP server to
+   configure network parameters.  MPL parameter set shall be considered
+   as a part of network parameters (nodes in an MPL domain should use an
+   identical parameter set).  And a parameter set are required to
+   configure an MPL domain.
+
+   This document is to define the way to distribute parameter sets for
+   MPL forwarders as a DHCPv6 [<a href="../../pandoc2rfc/rfcmarkup?rfc=3315" title='"Dynamic Host Configuration Protocol for IPv6 (DHCPv6)"'>RFC3315</a>] option.  This document is
+   intended to follow the guideline [<a href="../../pandoc2rfc/rfcmarkup?rfc=7227" title='"Guidelines for Creating New DHCPv6 Options"'>RFC7227</a>].
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires July 25, 2015                 [Page 2]</span>
+</pre><pre class='newpage'><a name="page-3" id="page-3" href="#page-3" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6              January 2015</span>
+
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in [<a href="../../pandoc2rfc/rfcmarkup?rfc=2119" title='"Key words for use in RFCs to Indicate Requirement Levels"'>RFC2119</a>].
+
+<span class="h2"><a name="section-2">2</a>.  MPL Parameter Configuration Option</span>
+
+   Per MPL domain, there are following 10 parameters.  An MPL domain is
+   defined by an MPL domain address.
+
+   o  PROACTIVE_FORWARDING
+
+   o  SEED_SET_ENTRY_LIFETIME
+
+   o  DATA_MESSAGE_IMIN
+
+   o  DATA_MESSAGE_IMAX
+
+   o  DATA_MESSAGE_K
+
+   o  DATA_MESSAGE_TIMER_EXPIRATIONS
+
+   o  CONTROL_MESSAGE_IMIN
+
+   o  CONTROL_MESSAGE_IMAX
+
+   o  CONTROL_MESSAGE_K
+
+   o  CONTROL_MESSAGE_TIMER_EXPIRATIONS
+
+   One network may have multiple MPL domains with different
+   configurations.  To configure more than one MPL domain via DHCP,
+   there may be more than one MPL Parameter Configuration Option given
+   to DHCP clients from a DHCP server.
+
+<span class="h3"><a name="section-2.1">2.1</a>.  MPL Parameter Configuration Option Format</span>
+
+   To distribute a configuration of an MPL domain or a default value for
+   all MPL domains (wildcard) under the network managed by the DHCP
+   server, this document defines a DHCPv6 option format as follows.
+   Short floating point format is used to describe wide range of timer
+   values.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |    OPTION_MPL_PARAMETERS      |          option_len           |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |P|     Z       |     TUNIT     |            SE_LIFETIME        |
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires July 25, 2015                 [Page 3]</span>
+</pre><pre class='newpage'><a name="page-4" id="page-4" href="#page-4" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6              January 2015</span>
+
+
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |    DM_K       |         DM_IMIN               |       DM_IMAX &gt;
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   &gt; (cont'ed)     |         DM_T_EXP              |      C_K      |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |          C_IMIN               |          C_IMAX               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |          C_T_EXP              |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   (if option_len = 34 )
+                                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                                   |  MPL Domain Address           &gt;
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   &gt;          MPL Domain Address  (128bits)                        &gt;
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   &gt;          (cont'ed)                                            &gt;
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   &gt;          (cont'ed)                                            &gt;
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   &gt;          (cont'ed)            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   OPTION_MPL_PARAMETERS:  DHCPv6 option identifier (not yet assigned).
+
+   option_len:  Length of the option.  It SHOULD be 18 (without MPL
+      domain address) or 34 (with MPL domain address)
+
+   P (1 bit):  A flag to indicate PROACTIVE_FORWARDING
+
+   Z (7 bits)  Reserved.  Should be 0.
+
+   TUNIT (unsigned 8 bit integer)  Unit time of times in this option.
+      It SHALL NOT be 0 or 255.
+
+   SE_LIFETIME:  SEED_SET_ENTRY_LIFETIME/TUNIT in milliseconds.  It
+      SHALL NOT be 0 or 0xffff.
+
+   DM_K (unsigned 8 bit integer):  DATA_MESSAGE_K.
+
+   DM_IMIN (unsigned 16 bit integer):  DATA_MESSAGE_IMIN/TUNIT in
+      milliseconds.  It SHALL NOT be 0 or 0xffff.
+
+   DM_IMAX (unsigned 16 bit integer):  DATA_MESSAGE_IMAX/TUNIT in
+      milliseconds.  It SHALL NOT be 0 or 0xffff.
+
+   DM_T_EXP (unsigned 16 bit integer):  DATA_MESSAGE_TIMER_EXPIRATIONS/
+      TUNIT in milliseconds.  It SHALL NOT be 0 or 0xffff.
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires July 25, 2015                 [Page 4]</span>
+</pre><pre class='newpage'><a name="page-5" id="page-5" href="#page-5" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6              January 2015</span>
+
+
+   C_K (unsigned 8 bit integer):  CONTROL_MESSAGE_K.
+
+   C_IMIN (unsigned 16 bit integer):  CONTROL_MESSAGE_IMIN/TUNIT in
+      milliseconds.  It SHALL NOT be 0 or 0xffff.
+
+   C_IMAX:  CONTROL_MESSAGE_IMAX/TUNIT in milliseconds.  It SHALL NOT be
+      0 or 0xffff.
+
+   C_T_EXP:  CONTROL_MESSAGE_TIMER_EXPIRATIONS/TUNIT in milliseconds.
+      It SHALL NOT be 0 or 0xffff.
+
+   Note that all time values (Trickle timers and expiration periods) are
+   in TUNIT milliseconds precision.  For example, if TUNIT is 20 and the
+   data message interval minimum (DATA_MESSAGE_IMIN) is 1000ms, then
+   DM_IMIN shall be set to 50.
+
+<span class="h3"><a name="section-2.2">2.2</a>.  DHCPv6 Client Behavior</span>
+
+   Clients MAY request MPL Parameter Configuration Option, as described
+   in <a href="../../pandoc2rfc/rfcmarkup?rfc=3315">RFC3315</a> [<a href="../../pandoc2rfc/rfcmarkup?rfc=3315" title='"Dynamic Host Configuration Protocol for IPv6 (DHCPv6)"'>RFC3315</a>], sections <a href="#section-17.1.1">17.1.1</a>, <a href="#section-18.1.1">18.1.1</a>, <a href="#section-18.1.3">18.1.3</a>, <a href="#section-18.1.4">18.1.4</a>, <a href="#section-18.1.5">18.1.5</a>
+   and 22.7.  As a convenience to the reader, we mention here that the
+   client includes requested option codes in Option Request Option.
+
+   Clients MUST discard MPL Parameter Configuration Option if it is
+   invalid (e.g. it sets reserved bits or it has timers with reserved
+   exp=7 in Unsigned Short Floating Point).
+
+<span class="h3"><a name="section-2.3">2.3</a>.  MPL Forwarder Behavior</span>
+
+   If a DHCPv6 client requests and receives MPL Parameter Configuration
+   Option, the node MAY join the MPL domain given by the option and act
+   as an MPL forwarder.  Each joining node SHOULD configure its MPL
+   forwarder with the given parameter set for the MPL domain.
+
+   The priority of MPL Parameter Configuration applied for an MPL Domain
+   is as follows (high to low).
+
+   o  Specific MPL Parameter Configuration to the MPL Domain (optlen=34)
+
+   o  Wildcard MPL Parameter Configuration (optlen=18)
+
+   o  Default configuration given in the MPL specification.
+
+   There SHALL be no more than one MPL Parameter Configuration Option
+   for a MPL domain or the wildcard.  Thus, the order of DHCPv6 options
+   in the packet has no effect on precedence.
+
+
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires July 25, 2015                 [Page 5]</span>
+</pre><pre class='newpage'><a name="page-6" id="page-6" href="#page-6" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6              January 2015</span>
+
+
+   A node MAY leave from an MPL domain if the following two conditions
+   are satisfied. 1) The MPL domain is configured by a DHCPv6 option
+   from a DHCPv6 server previously. 2) The node has received an updated
+   MPL Parameter Configuration Option without a configuration for the
+   MPL domain.
+
+   MPL parameter may be updated occasionally.  With stateful DHCPv6,
+   updates can be done when the renewal timer expires.  Information
+   Refresh Time Option [<a href="../../pandoc2rfc/rfcmarkup?rfc=4242" title='"Information Refresh Time Option for Dynamic Host Configuration Protocol for IPv6 (DHCPv6)"'>RFC4242</a>] shall be used to keep each forwarders
+   updated.
+
+   To reduce periodical update traffic a node may try to use very long
+   interval between updates.  In the case, reconfigure message may be
+   used to keep forwarder parameter sets synchronized.
+
+<span class="h3"><a name="section-2.4">2.4</a>.  DHCPv6 Server Behavior</span>
+
+   Sections <a href="#section-17.2.2">17.2.2</a> and <a href="#section-18.2">18.2</a> of <a href="../../pandoc2rfc/rfcmarkup?rfc=3315">RFC3315</a> [<a href="../../pandoc2rfc/rfcmarkup?rfc=3315" title='"Dynamic Host Configuration Protocol for IPv6 (DHCPv6)"'>RFC3315</a>] govern server operation
+   in regards to option assignment.  As a convenience to the reader, we
+   mention here that the server will send MPL Parameter Configuration
+   Option only if configured with specific value for MPL Parameter
+   Configuration Option and the client requested it.
+
+   Servers SHALL ignore incoming MPL Parameter Configuration Option.
+
+<span class="h3"><a name="section-2.5">2.5</a>.  DHCPv6 Relay Behavior</span>
+
+   It's never appropriate for a relay agent to add options to a message
+   heading toward the client, and relay agents don't actually construct
+   Relay-Reply messages anyway.  There are no additional requirements
+   for relays.
+
+<span class="h3"><a name="section-2.6">2.6</a>.  Operational Considerations</span>
+
+   A parameter set for an MPL domain SHOULD NOT be updated more often
+   than two times of expected refresh interval.
+
+   If a node with MPL forwarder configured by MPL Parameter
+   configuration Option failed to refresh the option for two times of
+   information refresh time, it SHALL suspend the MPL forwarders of MPL
+   domains configured by the option.  MPL forwarders configured by other
+   methods such as static configuration file SHALL NOT be suspended.
+
+
+
+
+
+
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires July 25, 2015                 [Page 6]</span>
+</pre><pre class='newpage'><a name="page-7" id="page-7" href="#page-7" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6              January 2015</span>
+
+
+<span class="h2"><a name="section-3">3</a>.  IANA Considerations</span>
+
+   A DHCPv6 option code for MPL Parameter Configuration Option needs to
+   be assigned from IANA.
+
+<span class="h2"><a name="section-4">4</a>.  Security Considerations</span>
+
+   A forged option may cause excessive layer-2 broadcasting.
+   Implementations should set reasonable bounds for each parameter.  For
+   example, not too high K, not too low IMIN, etc.  These may be
+   implementation dependent or may be derived from MAC/PHY
+   specifications.  DHCP server or the network itself shall be trusted
+   by some means including network access control or DHCP
+   authentications.
+
+<span class="h2"><a name="section-5">5</a>.  References</span>
+
+<span class="h3"><a name="section-5.1">5.1</a>.  Normative References</span>
+
+   [<a name="ref-I-D.ietf-roll-trickle-mcast" id="ref-I-D.ietf-roll-trickle-mcast">I-D.ietf-roll-trickle-mcast</a>]
+              Hui, J. and R. Kelsey, "Multicast Forwarding Using
+              Trickle", <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-trickle-mcast-11">draft-ietf-roll-trickle-mcast-11</a> (work in
+              progress), November 2014.
+
+   [<a name="ref-RFC2119" id="ref-RFC2119">RFC2119</a>]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", <a href="../../pandoc2rfc/rfcmarkup?bcp=14">BCP 14</a>, <a href="../../pandoc2rfc/rfcmarkup?rfc=2119">RFC 2119</a>, March 1997.
+
+   [<a name="ref-RFC3315" id="ref-RFC3315">RFC3315</a>]  Droms, R., Bound, J., Volz, B., Lemon, T., Perkins, C.,
+              and M. Carney, "Dynamic Host Configuration Protocol for
+              IPv6 (DHCPv6)", <a href="../../pandoc2rfc/rfcmarkup?rfc=3315">RFC 3315</a>, July 2003.
+
+   [<a name="ref-RFC4242" id="ref-RFC4242">RFC4242</a>]  Venaas, S., Chown, T., and B. Volz, "Information Refresh
+              Time Option for Dynamic Host Configuration Protocol for
+              IPv6 (DHCPv6)", <a href="../../pandoc2rfc/rfcmarkup?rfc=4242">RFC 4242</a>, November 2005.
+
+<span class="h3"><a name="section-5.2">5.2</a>.  Non-Normative References</span>
+
+   [<a name="ref-RFC7227" id="ref-RFC7227">RFC7227</a>]  Hankins, D., Mrugalski, T., Siodelski, M., Jiang, S., and
+              S. Krishnan, "Guidelines for Creating New DHCPv6 Options",
+              <a href="../../pandoc2rfc/rfcmarkup?bcp=187">BCP 187</a>, <a href="../../pandoc2rfc/rfcmarkup?rfc=7227">RFC 7227</a>, May 2014.
+
+<span class="h2"><a name="appendix-A">Appendix A</a>.  Update History</span>
+
+   Updates on <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-02">draft-ietf-roll-mpl-configuration-02</a> to <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-03">draft-ietf-roll-</a>
+   <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-03">mpl-configuration-03</a>:
+
+   o  References updated
+
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires July 25, 2015                 [Page 7]</span>
+</pre><pre class='newpage'><a name="page-8" id="page-8" href="#page-8" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6              January 2015</span>
+
+
+   o  Removed reference for DHCPv6 stateless reconfiguration as it has
+      expired
+
+   Updates on <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-01">draft-ietf-roll-mpl-configuration-01</a> to <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-02">draft-ietf-roll-</a>
+   <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-02">mpl-configuration-02</a>:
+
+   o  Short unsigned floating point is dropped (#159)
+
+   o  Packed value is removed and now every value has its own byte(s)
+      (#159)
+
+   Updates on <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-00">draft-ietf-roll-mpl-configuration-00</a> to <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-01">draft-ietf-roll-</a>
+   <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-01">mpl-configuration-01</a>:
+
+   o  Operational considerations (normative) and appendix considerations
+      (non-normative) are added (Issue #157)
+
+   o  More control on nodes / allow constrained nodes to ignore the
+      configuration: "the node s/SHOULD/MAY/ join the MPL domain given
+      by the option" (Issue #158)
+
+   Updates on <a href="../../pandoc2rfc/rfcmarkup?draft=draft-doi-roll-mpl-configuration-05">draft-doi-roll-mpl-configuration-05</a> to <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-00">draft-ietf-roll-</a>
+   <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-00">mpl-configuration-00</a>:
+
+   o  I-D renamed.
+
+<span class="h2"><a name="appendix-B">Appendix B</a>.  Considerations on Inconsistent Parameter Set</span>
+
+   This draft introduces dynamic update of MPL parameters.  Because the
+   update process is not synchronized, nodes may have inconsistent
+   parameter set.
+
+   Inconsistent parameter may reduce performance.  On the other hand, it
+   shall work as long as both parameter set are reasonable parameter set
+   for a given communication load.  As motivations for parameter update
+   are update on environment, node density, or communication load,
+   operators of MPL networks shall be aware of unupdated nodes and make
+   sure old and new parameter sets are reasonable for expected refresh
+   intervals.
+
+Authors' Addresses
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires July 25, 2015                 [Page 8]</span>
+</pre><pre class='newpage'><a name="page-9" id="page-9" href="#page-9" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6              January 2015</span>
+
+
+   Yusuke Doi
+   TOSHIBA Corporation
+   Komukai Toshiba Cho 1
+   Saiwai-Ku
+   Kawasaki, Kanagawa  2128582
+   JAPAN
+
+   Phone: +81-45-342-7230
+   Email: yusuke.doi@toshiba.co.jp
+
+
+   Matthew Gillmore
+   Itron, Inc
+   2111 N Molter Rd.
+   Liberty Lake, WA  99019
+   USA
+
+   Email: matthew.gillmore@itron.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Doi &amp; Gillmore            Expires July 25, 2015                 [Page 9]
+
+</pre><br />
+<span class="noprint"><small><small>Html markup produced by rfcmarkup 1.96, available from
+<a href="http://tools.ietf.org/tools/rfcmarkup/">http://tools.ietf.org/tools/rfcmarkup/</a>
+</small></small></span>
+</body></html>
