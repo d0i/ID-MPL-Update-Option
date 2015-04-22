@@ -70,25 +70,25 @@ To distribute a configuration of an MPL domain or a default value for all MPL do
 `Z` (7 bits)
 :    Reserved. Should be 0.
 `TUNIT` (unsigned 8 bit integer)
-:    Unit time of times in this option. It SHALL NOT be 0 or 255.
+:    Unit time of times in this option. 0 and 0xff are reserved and SHALL NOT be used.
 `SE_LIFETIME`:
-:    SEED_SET_ENTRY_LIFETIME/TUNIT in milliseconds. It SHALL NOT be 0 or 0xffff.
+:    SEED_SET_ENTRY_LIFETIME/TUNIT in milliseconds. 0 and 0xffff are reserved and SHALL NOT be used.
 `DM_K` (unsigned 8 bit integer):
 :    DATA_MESSAGE_K.
 `DM_IMIN` (unsigned 16 bit integer):
-:    DATA_MESSAGE_IMIN/TUNIT in milliseconds. It SHALL NOT be 0 or 0xffff.
+:    DATA_MESSAGE_IMIN/TUNIT in milliseconds. 0 and 0xffff are reserved and SHALL NOT be used.
 `DM_IMAX` (unsigned 16 bit integer):
-:    DATA_MESSAGE_IMAX/TUNIT in milliseconds. It SHALL NOT be 0 or 0xffff.
+:    DATA_MESSAGE_IMAX/TUNIT in milliseconds. 0 and 0xffff are reserved and SHALL NOT be used.
 `DM_T_EXP` (unsigned 16 bit integer):
-:    DATA_MESSAGE_TIMER_EXPIRATIONS/TUNIT in milliseconds. It SHALL NOT be 0 or 0xffff.
+:    DATA_MESSAGE_TIMER_EXPIRATIONS/TUNIT in milliseconds. 0 and 0xffff are reserved and SHALL NOT be used.
 `C_K` (unsigned 8 bit integer):
 :    CONTROL_MESSAGE_K.
 `C_IMIN` (unsigned 16 bit integer):
-:    CONTROL_MESSAGE_IMIN/TUNIT in milliseconds. It SHALL NOT be 0 or 0xffff.
+:    CONTROL_MESSAGE_IMIN/TUNIT in milliseconds. 0 and 0xffff are reserved and SHALL NOT be used.
 `C_IMAX`:
-:    CONTROL_MESSAGE_IMAX/TUNIT in milliseconds. It SHALL NOT be 0 or 0xffff.
+:    CONTROL_MESSAGE_IMAX/TUNIT in milliseconds. 0 and 0xffff are reserved and SHALL NOT be used.
 `C_T_EXP`:
-:    CONTROL_MESSAGE_TIMER_EXPIRATIONS/TUNIT in milliseconds. It SHALL NOT be 0 or 0xffff.
+:    CONTROL_MESSAGE_TIMER_EXPIRATIONS/TUNIT in milliseconds. 0 and 0xffff are reserved and SHALL NOT be used.
 
 Note that all time values (Trickle timers and expiration periods) are in TUNIT milliseconds precision. For example, if TUNIT is 20 and the data message interval minimum (DATA_MESSAGE_IMIN) is 1000ms, then DM_IMIN shall be set to 50.
 
@@ -135,14 +135,14 @@ If a node with MPL forwarder configured by MPL Parameter configuration Option fa
 
 # IANA Considerations
 
-A DHCPv6 option code for MPL Parameter Configuration Option needs to be assigned from IANA.
+IANA is requested to assign one option code for OPTION_MPL_PARAMETERS from the "DHCP Option Codes" table of the Dynamic Host Configuration Protocol for IPv6 (DHCPv6) Registry.
 
 # Security Considerations
 
 A forged option may cause excessive layer-2 broadcasting. 
 Implementations should set reasonable bounds for
 each parameter. For example, not too high K, not too low IMIN, etc.
-These may be implementation dependent or may be derived from MAC/PHY specifications.
+These bounds may be implementation dependent or may be derived from MAC/PHY specifications.
 DHCP server or the network itself shall be trusted by
 some means including network access control or DHCP authentications.
 

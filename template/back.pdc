@@ -1,5 +1,11 @@
 # Update History
 
+Updates on draft-ietf-roll-mpl-configuration-03 to draft-ietf-roll-mpl-configuration-04:
+
+ * References updated (Non-normative -> Informative)
+ * IANA section is updated to make clear request of option ID
+ * Reserved numbers are clearly denoted
+
 Updates on draft-ietf-roll-mpl-configuration-02 to draft-ietf-roll-mpl-configuration-03:
 
  * References updated
