@@ -1,14 +1,327 @@
-comment of pal@cs.stanford.edu 
-- add reference to section 6 of rfc6206 and clarify some uneven load case
+* ZigBee
+
+multicast address request
+
+* comment from alvaro
+
+>  4. Section 4. (Security Considerations)  Please include references
+   and
+>     comments (where needed) to the security considerations in
+   rfc3315
+>     and rfc7227.
+
+Thanks. I'll add this. 
+
+Nits:
+
+ 1. The word “draft” is used in a couple of places to refer to this
+    document and MPL; use “document” instead.
+ 2. Section 2 (MPL Parameter Configuration Option) s/there are
+   following
+    10 parameters/there are the following 10 parameters
+ 3. 2.5. (DHCPv6 Relay Behavior).  A reference to rfc6422 would be
+   nice.
+ 4. Section 2.6. (Operational Considerations) "A parameter set for an
+    MPL domain SHOULD NOT be updated more often than two times of
+    expected refresh interval.”  I’m assuming that the “expected
+   refresh
+    interval” is Information Refresh Time, right?  If so, please call
+   it
+    what it is.
+ 5. I would consider rfc7227 a Normative Reference. 
+
+--
+
+The use of MAY above gives the impression that joining is optional.
+   But
+youre saying that even if the node wants to join it may not be able
+   to,
+which is different.
+
+Suggestion:
+
+OLD>
+
+   If a DHCPv6 client requests and receives MPL Parameter
+   Configuration
+   Option, the node MAY join the MPL domain given by the option and
+   act
+   as an MPL forwarder.
 
 
-comments from jinmei-san
+NEW>
+
+   If a DHCPv6 client requests and receives MPL Parameter
+   Configuration
+   Option, the node SHOULD join the MPL domain given by the option and
+   act
+   as an MPL forwarder.  Note that there may be cases in which a node
+   may
+   fail is to join a domain (or domains) due to local resource
+   constraints.
+
+Im not sure if you/the WG want to add something else to that
+   paragraph..
+
+* IANA 
+registration
+
+(BEGIN IANA COMMENTS)
+
+IESG/Authors/WG Chairs:
+
+IANA has reviewed draft-ietf-roll-mpl-parameter-configuration-04.
+   Authors should review the comments and/or questions below.  Please
+   report any inaccuracies and respond to any questions as soon as
+   possible.
+
+We received the following comments/questions from the IANA's reviewer:
+
+IANA understands that, upon approval of this document, there is a
+   single action which must be completed.
+
+In the DHCPv6 Option Codes subregistry of the Dynamic Host
+   Configuration Protocol for IPv6 (DHCPv6) located at:
+
+http://www.iana.org/assignments/dhcpv6-parameters
+
+a single new option code will be registered as follows:
+
+Value: [ TBD-at-Registration ]
+Description: OPTION_MPL_PARAMETERS
+Reference: [ RFC-to-be ]
+
+As this document requests registrations in an Expert Review or
+   Specification Required (see RFC 5226) registry, we will initiate
+   the required Expert Review via a separate request. Expert review
+   will need to be completed before your document can be approved for
+   publication as an RFC.
+
+IANA understands that this is the only action required to be completed
+   upon approval of this document.
+
+Note:  The actions requested in this document will not be completed
+   until the document has been approved for publication as an
+   RFC. This message is only to confirm what actions will be
+   performed.  
+
+Thanks,
+
+Pearl Liang
+ICANN
+
+* secdir review
+
+I have reviewed this document as part of the security directorate's
+   ongoing effort to review all IETF documents being processed by the
+   IESG. These comments were written primarily for the benefit of the
+   security area directors. Document editors and WG chairs should
+   treat these comments just like any other last call comments.
+
+This draft defines a new DHCPv6 option, whereby a DHCP server can
+   configure a client with  Multicast Protocol for Low power and Lossy
+   Networks (MPL) policy. The option definition seems
+   straightforward. Security Considerations outlines three items which
+   seem useful:
+
+1. Describing a resource consumption threat ("excessive layer-2
+   broadcasting“) resulting from a man-in-the-middle modifying policy
+   sent within an option. If there is a suggested mitigation (e.g., a
+   means of integrity protecting the DHCPv6 traffic between the client
+   and server) this would be worth noting. But I’m not sure if there
+   any available mitigation in a ROLL environment.
+
+2. Making a requirement that a server implementation choose reasonable
+   policy values. This might be more useful if it were phrased as a
+   threat, something like “Server implementations need to take care
+   in setting reasonable bounds for each parameter in order to avoid
+   overloading the network."
+
+3. Making a requirement that the "DHCP server or the network itself
+   shall be trusted by some means including network access control or
+   DHCP authentication”.  Is this this “shall” intended to be an
+   RFC 2119  “MUST”?
+
+I consider this draft to be Ready with nits.
+
+Brian
+
+* gen-art review
 
 
-> - すでにコメントあったように、floating pointフィールドはtricky過ぎな感
->    じです。環境上どうしても必要ということなら、justificationを明記すべ
->    きでしょう。
-> - option guideline draft (now RFC)、referencesに挙がってるけど引用され
->    てないように見えます。
-> 
 
+I am the assigned Gen-ART reviewer for this draft. For background on
+Gen-ART, please see the FAQ at
+<http://wiki.tools.ietf.org/area/gen/trac/wiki/GenArtfaq>
+
+Please resolve these comments along with any other Last Call comments you
+may receive.
+
+Document: draft-ietf-roll-mpl-parameter-configuration-04
+Reviewer: Peter Yee
+Review Date: Jun-25-2015
+IETF LC End Date: Jun-30-2015
+IESG Telechat date: Jul-09-2015
+
+Summary: This draft is basically ready for publication as an Internet
+Standard, but has nits that should be fixed before publication. [Ready with
+nits.]  (I'm discounting the severity of the minor issue mentioned below.)
+
+This draft describes a DHCPv6 option used to request MPL configuration
+parameter sets.
+
+Major Issues:  None.
+
+Minor Issues: 
+
+Some of the parameters are described with their bit lengths, others are not.
+Lengths are listed haphazardly.  Be consistent in either including them or
+not.  Timer lengths are listed as n-bit integers, but this may be confusing
+given that the document says "Short floating point format is used to
+describe the wide range of timer values".  So, are the timer values floating
+point or integer?  Is the combined implication supposed to be that the
+numbers are formatted as floating point (for greater range), but only take
+on integer values?  Given that the values in this document are all given in
+reference to division by the value of TUNIT, it's possible that values might
+not be integers.  If that happens and only integers are desired, is rounding
+or truncation preferred?  Also note that Appendix A indicates that "short
+unsigned floating point" was dropped.  It's not completely clear if that
+means that "short [signed?] floating point" was adopted in its stead or
+whether actual short integers were preferred.
+
+Nits:
+
+-General:
+
+Append a comma after "e.g.".
+
+Change things like "8 bit integer" to "8-bit integer" and do similarly for
+"16 bit integer".
+
+-Specific: 
+
+Page 1, Abstract, 1st sentence: change "of" to "for".  Insert "a" before
+"DHCPv6".
+
+Page 1, Abstract, last sentence: change the last "parameter" to
+"parameters".
+
+Page 2, section 1, 1st paragraph, 1st sentence: change "low power" to
+"low-power".  Change "lossy network" to "lossy networks,".  (Note the
+trailing comma after "networks".)
+
+Page 2, section 1, 1st paragraph, 3rd sentence: change "parameter" to
+"parameters".  Change "controls" to "control".  Insert "the" before
+"trade-off".
+
+Page 2, section 1, 1st paragraph, 6th sentence: insert "the" before "same".
+Replace the period at the end of the sentence with a comma.
+
+Page 2, section 1, 1st paragraph, 7th sentence: change "And" to "but" to
+join this sentence with the previous one.
+
+Page 2, section 1, 2nd paragraph, 2nd sentence: change the first "set" to
+"sets".
+
+Page 2, section 1, 2nd paragraph, 3rd sentence: change "are" to "is".
+
+Page 2, section 1, 3rd paragraph, 1st sentence: change "is to define" to
+"defines".
+
+Page 2, section 1, 3rd paragraph, 2nd sentence: change "guideline [RFC7227]"
+to "[RFC7227] guidelines".
+
+Page 3, section 2, 1st paragraph, 1st sentence: insert "the" before
+"following".
+
+Page 3, section 2, last paragraph, last sentence: change "from" to "by".
+
+Page 3, section 2.1, 1st paragraph, last sentence: change "floating point"
+to "floating-point".  However, see discussion in Minor Issues regarding the
+actual format and meaning of these numbers.
+
+Page 4, "option_len" and "P" definitions: add a period to the end of each.
+
+Page 5, section 2.2, 1st paragraph, 1st sentence: insert "the" before "MPL".
+Delete the first "RFC3315".  Add a comma after "18.1.5".
+
+Page 5, section 2.2, 1st paragraph, last sentence: insert "the" before the
+first "Option".
+
+Page 5, section 2.2, 2nd paragraph, 1st sentence: insert "the" before "MPL".
+Clarify whether the "Unsigned Short Floating Point" discussion should be
+present here given the note in Appendix A and my discussion in Minor Issues.
+
+Page 5, section 2.3, 1st paragraph, 1st sentence: insert "the" before the
+first "MPL".
+
+Page 5, section 2.3, 2nd paragraph: consider changing "Configuration" to
+"Configurations".  Change "for" to "to".  Change the period to a colon.
+
+Page 5, section 2.3, 1st and 2nd bullet items: change "optlen" to
+"option_len".
+
+Page 6, section 2.3, 1st paragraph: change "a" to "an" before "MPL".
+
+Page 6, section 2.3, 2nd paragraph: delete "from".
+
+Page 6, section 2.3, 3rd paragraph, 1st sentence: change "parameter" to
+"parameters".
+
+Page 6, section 2.3, 3rd paragraph, last sentence: change "forwarders" to
+"forwarder".
+
+Page 6, section 2.3, 4th paragraph, 1st sentence: change "periodical" to
+"periodic".  Append a comma after "traffic".  Insert "a" before "very".
+
+Page 6, section 2.3, 4th paragraph, last sentence: change "message" to
+"messages".
+
+Page 6, section 2.4, 1st paragraph, 1st sentence: delete the first
+"RFC3315".
+
+Page 6, section 2.4, 1st paragraph, 2nd sentence: insert "the" before "MPL"
+in both places in the sentence.  Append "it was" after "if".  Change "value"
+to "values".  
+
+Page 6, section 2.4, 2nd paragraph: insert "an" before "incoming".
+
+Page 6, section 2.6, 1st paragraph: change "two times of" to "twice the".
+Question: does this restriction apply even when the client is using a "very
+long interval between updates"?
+
+Page 6, section 2.6, 2nd paragraph, 1st sentence: insert "an" before the
+first "MPL".  Insert "the" before the second "MPL".  Capitalize
+"configuration".  Change "for two times" to "within twice the".  Change
+"time" to "interval".  Insert "the" before the fourth "MPL".
+
+Page 7, section 4, 2nd sentence: insert "DM_" directly before "K" and
+"IMIN".
+
+Page 7, section 4, last sentence: insert "The" at the beginning of the
+sentence.  Change "authentications" to "authentication".
+
+Page 7, Normative References: update the reference for
+"draft-ietf-roll-trickle-mcast-11" to "draft-ietf-roll-trickle-mcast-12"
+(June 2015).
+
+Page 8, Appendix B, 1st paragraph, last sentence: change "set" to "sets".
+
+Page 8, Appendix B, 2nd paragraph, 1st sentence: append "set" after
+"parameter".
+
+Page 8, Appendix B, 2nd paragraph, 2nd sentence: change "it" to "this
+situation".  Consider changing "shall work" to either "should work" or
+"works" or "will work".  Change both occurrences of "set" to "sets".
+
+Page 8, Appendix B, 2nd paragraph, last sentence: insert "the" before
+"motivations".  Consider changing "are" to "include".  Change "on" to "of
+the".  Insert "the" before "expected".
+
+
+--
+
+I suppose I should really phrase that as "a Standards Track RFC".  It's not
+old enough to jump directly to "Internet Standard". 
+
+   -Peter
