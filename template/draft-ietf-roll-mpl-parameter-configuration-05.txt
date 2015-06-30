@@ -176,23 +176,21 @@ Internet-Draft            MPL Conf. for DHCPv6                 June 2015
    >(cont'ed)      |    C_IMAX     |          C_T_EXP              |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   (if option_len = 34 )
-                                   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                                   |  MPL Domain Address           >
+   (if option_len = 32 )
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   >          MPL Domain Address  (128bits)                        >
+   |          MPL Domain Address  (128bits)                        >
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    >          (cont'ed)                                            >
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    >          (cont'ed)                                            >
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   >          (cont'ed)            |
-   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   >          (cont'ed)                                            |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    OPTION_MPL_PARAMETERS:  DHCPv6 option identifier (not yet assigned).
 
-   option_len:  Length of the option.  It SHOULD be 18 (without MPL
-      domain address) or 34 (with MPL domain address).
+   option_len:  Length of the option.  It SHOULD be 16 (without MPL
+      domain address) or 32 (with MPL domain address).
 
    P (1 bit):  A flag to indicate PROACTIVE_FORWARDING.  The flag is set
       if PROACTIVE_FORWARDING is true.
@@ -218,6 +216,8 @@ Internet-Draft            MPL Conf. for DHCPv6                 June 2015
       0 and 0xffff are reserved and SHALL NOT be used.
 
    C_K (unsigned 8-bit integer):  CONTROL_MESSAGE_K.
+
+
 
 
 
@@ -264,9 +264,9 @@ Internet-Draft            MPL Conf. for DHCPv6                 June 2015
    is as follows (high to low):
 
    o  Specific MPL Parameter Configuration to the MPL Domain
-      (option_len=34)
+      (option_len=32)
 
-   o  Wildcard MPL Parameter Configuration (option_len=18)
+   o  Wildcard MPL Parameter Configuration (option_len=16)
 
    o  Default configuration given in the MPL specification.
 

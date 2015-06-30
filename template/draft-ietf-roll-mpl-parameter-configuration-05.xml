@@ -93,24 +93,22 @@
 &gt;(cont'ed)      |    C_IMAX     |          C_T_EXP              |     
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-(if option_len = 34 )
-                                +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                                |  MPL Domain Address           &gt;
+(if option_len = 32 )
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-&gt;          MPL Domain Address  (128bits)                        &gt;
+|          MPL Domain Address  (128bits)                        &gt;
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 &gt;          (cont'ed)                                            &gt;
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 &gt;          (cont'ed)                                            &gt;
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-&gt;          (cont'ed)            |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+&gt;          (cont'ed)                                            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </artwork>
         </figure>
         <t>
           <list style="hanging">
             <t hangText="OPTION_MPL_PARAMETERS:">DHCPv6 option identifier (not yet assigned).  </t>
-            <t hangText="option_len:">Length of the option. It SHOULD be 18 (without MPL domain address) or 34 (with MPL domain address).  </t>
+            <t hangText="option_len:">Length of the option. It SHOULD be 16 (without MPL domain address) or 32 (with MPL domain address).  </t>
             <t hangText="P (1 bit):">A flag to indicate PROACTIVE_FORWARDING. The flag is set if PROACTIVE_FORWARDING is true.  </t>
             <t hangText="Z (7 bits):">Reserved. Should be 0.  </t>
             <t hangText="TUNIT (unsigned 8-bit integer):">Unit time of timer parameters (SE_LIFETIME, and *_IMIN) in this option. 0 and 0xff are reserved and SHALL NOT be used.  </t>
@@ -136,8 +134,8 @@
         <t>The priority of MPL Parameter Configurations applied to an MPL Domain is as follows (high to low): </t>
         <t>
           <list style="symbols">
-            <t>Specific MPL Parameter Configuration to the MPL Domain (option_len=34) </t>
-            <t>Wildcard MPL Parameter Configuration (option_len=18) </t>
+            <t>Specific MPL Parameter Configuration to the MPL Domain (option_len=32) </t>
+            <t>Wildcard MPL Parameter Configuration (option_len=16) </t>
             <t>Default configuration given in the MPL specification.  </t>
           </list>
         </t>

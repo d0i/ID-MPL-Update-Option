@@ -44,25 +44,23 @@ To distribute a configuration of an MPL domain or a default value for all MPL do
     >(cont'ed)      |    C_IMAX     |          C_T_EXP              |     
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-    (if option_len = 34 )
-                                    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-                                    |  MPL Domain Address           >
+    (if option_len = 32 )
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    >          MPL Domain Address  (128bits)                        >
+    |          MPL Domain Address  (128bits)                        >
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     >          (cont'ed)                                            >
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     >          (cont'ed)                                            >
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    >          (cont'ed)            |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    >          (cont'ed)                                            |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
 
 `OPTION_MPL_PARAMETERS`:
 :    DHCPv6 option identifier (not yet assigned).
 `option_len`:
-:    Length of the option. It SHOULD be 18 (without MPL domain address) or 34 (with MPL domain address).
+:    Length of the option. It SHOULD be 16 (without MPL domain address) or 32 (with MPL domain address).
 `P` (1 bit):
 :    A flag to indicate PROACTIVE_FORWARDING. The flag is set if PROACTIVE_FORWARDING is true.
 `Z` (7 bits):
@@ -103,8 +101,8 @@ Each joining node SHOULD configure its MPL forwarder with the given parameter se
 
 The priority of MPL Parameter Configurations applied to an MPL Domain is as follows (high to low):
 
- - Specific MPL Parameter Configuration to the MPL Domain (option_len=34)
- - Wildcard MPL Parameter Configuration (option_len=18)
+ - Specific MPL Parameter Configuration to the MPL Domain (option_len=32)
+ - Wildcard MPL Parameter Configuration (option_len=16)
  - Default configuration given in the MPL specification.
 
 There SHALL be no more than one MPL Parameter Configuration Option for an MPL domain or the wildcard. Thus, the order of DHCPv6 options in the packet has no effect on precedence. 
