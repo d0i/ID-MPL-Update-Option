@@ -52,7 +52,7 @@
     <keyword>MPL, DHCPv6</keyword>
     <abstract>
       <t>
-This draft defines a way to configure a parameter set of MPL (Multicast Protocol for Low power and Lossy Networks) via DHCPv6 option. MPL has a set of parameters to control its behavior, and the parameter set is often configured as a network-wide parameter because the parameter set should be identical for each MPL forwarder in an MPL domain. Using the MPL Parameter Configuration Option defined in this document, a network can be configured with a single set of MPL parameter easily.
+This document defines a way to configure a parameter set for MPL (Multicast Protocol for Low power and Lossy Networks) via a DHCPv6 option. MPL has a set of parameters to control its behavior, and the parameter set is often configured as a network-wide parameter because the parameter set should be identical for each MPL forwarder in an MPL domain. Using the MPL Parameter Configuration Option defined in this document, a network can be configured with a single set of MPL parameters easily.
       </t>
     </abstract>
   </front>
@@ -67,13 +67,12 @@ This draft defines a way to configure a parameter set of MPL (Multicast Protocol
       <?rfc include="../refs/reference.RFC.3315.xml"?>
       <?rfc include="../refs/reference.RFC.4242.xml"?>
       <!-- ?rfc include="refs/reference.RFC.6282.xml"? -->
-      <?rfc include="../refs/reference.I-D.draft-ietf-roll-trickle-mcast-11.xml"?>
+      <?rfc include="../refs/reference.RFC.7227.xml"?>
+      <?rfc include="../refs/reference.I-D.draft-ietf-roll-trickle-mcast-12.xml"?>
     </references>
     <references title="Informative References">
-      <!-- ?rfc
-      include="../refs/reference.I-D.draft-jiang-dhc-stateless-reconfiguration-01.xml"?
-      -->
-      <?rfc include="../refs/reference.RFC.7227.xml"?>
+      <?rfc include="../refs/reference.RFC.5191.xml"?>
+      <?rfc include="../refs/reference.ZigBeeIP.xml"?>
     </references>
     <?rfc include="back.xml"?>
   </back>

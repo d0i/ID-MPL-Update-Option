@@ -4,7 +4,9 @@ Updates on draft-ietf-roll-mpl-configuration-03 to draft-ietf-roll-mpl-configura
 
  * fixed *_IMAX definition as RFC6206 defines
  * fixed *_EXP definition as draft-ietf-roll-trickle-mcast defines
- * [not yet] see TODO file
+ * added references to RFC3315 and RFC7227 in security considerations section
+ * added a paragraph on security consideration according to secdir review
+ * fixed some nits and updated references
 
 Updates on draft-ietf-roll-mpl-configuration-03 to draft-ietf-roll-mpl-configuration-04:
 
@@ -35,12 +37,13 @@ Updates on draft-doi-roll-mpl-configuration-05 to draft-ietf-roll-mpl-configurat
 
 This draft introduces dynamic update of MPL parameters. Because the
 update process is not synchronized, nodes may have inconsistent
-parameter set.
+parameter sets.
 
-Inconsistent parameter may reduce performance. On the other hand, it
-shall work as long as both parameter set are reasonable parameter set
-for a given communication load. As motivations for parameter update
-are update on environment, node density, or communication load,
+Inconsistent parameter set may reduce performance. On the other hand, 
+this situation
+will work as long as both parameter sets are reasonable parameter sets
+for a given communication load. As the motivations for parameter update
+include update of the environment, node density, or communication load,
 operators of MPL networks shall be aware of unupdated nodes and make
-sure old and new parameter sets are reasonable for expected refresh
+sure old and new parameter sets are reasonable for the expected refresh
 intervals.

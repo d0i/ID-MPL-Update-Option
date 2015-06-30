@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<reference anchor='ZigBeeIP'>
+
+<front>
+<title>ZigBee IP Specification</title>
+<author surname='' fullname=''>
+<organization>
+ZigBee Alliance
+</organization>
+</author>
+<date year='2014' month='Mar' />
+<abstract>
+<t></t></abstract></front>
+
+</reference>

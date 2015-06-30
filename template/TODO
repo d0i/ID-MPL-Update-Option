@@ -2,68 +2,17 @@
 
 multicast address request
 
-* comment from alvaro
-
->  4. Section 4. (Security Considerations)  Please include references
-   and
->     comments (where needed) to the security considerations in
-   rfc3315
->     and rfc7227.
-
-Thanks. I'll add this. 
+* [1] comment from alvaro
 
 Nits:
 
- 1. The word ¡Èdraft¡É is used in a couple of places to refer to this
-    document and MPL; use ¡Èdocument¡É instead.
- 2. Section 2 (MPL Parameter Configuration Option) s/there are
-   following
-    10 parameters/there are the following 10 parameters
- 3. 2.5. (DHCPv6 Relay Behavior).  A reference to rfc6422 would be
-   nice.
- 4. Section 2.6. (Operational Considerations) "A parameter set for an
-    MPL domain SHOULD NOT be updated more often than two times of
-    expected refresh interval.¡É  I¡Çm assuming that the ¡Èexpected
-   refresh
-    interval¡É is Information Refresh Time, right?  If so, please call
-   it
-    what it is.
- 5. I would consider rfc7227 a Normative Reference. 
+>  3. 2.5. (DHCPv6 Relay Behavior).  A reference to rfc6422 would be
+>    nice.
 
---
+In this document, I assume relay never supply any information. Could
+you clarify what is the reference for?
 
-The use of MAY above gives the impression that joining is optional.
-   But
-youre saying that even if the node wants to join it may not be able
-   to,
-which is different.
-
-Suggestion:
-
-OLD>
-
-   If a DHCPv6 client requests and receives MPL Parameter
-   Configuration
-   Option, the node MAY join the MPL domain given by the option and
-   act
-   as an MPL forwarder.
-
-
-NEW>
-
-   If a DHCPv6 client requests and receives MPL Parameter
-   Configuration
-   Option, the node SHOULD join the MPL domain given by the option and
-   act
-   as an MPL forwarder.  Note that there may be cases in which a node
-   may
-   fail is to join a domain (or domains) due to local resource
-   constraints.
-
-Im not sure if you/the WG want to add something else to that
-   paragraph..
-
-* IANA 
+* [0] IANA -> ÂÔ¤Á¤«¤Ê¡©
 registration
 
 (BEGIN IANA COMMENTS)
@@ -110,7 +59,12 @@ Thanks,
 Pearl Liang
 ICANN
 
-* secdir review
+** DHCPv6 
+
+Option Request
+
+
+* [2] secdir review
 
 I have reviewed this document as part of the security directorate's
    ongoing effort to review all IETF documents being processed by the
@@ -131,16 +85,22 @@ This draft defines a new DHCPv6 option, whereby a DHCP server can
    and server) this would be worth noting. But I¡Çm not sure if there
    any available mitigation in a ROLL environment.
 
+-> security consideration
+
 2. Making a requirement that a server implementation choose reasonable
    policy values. This might be more useful if it were phrased as a
    threat, something like ¡ÈServer implementations need to take care
    in setting reasonable bounds for each parameter in order to avoid
    overloading the network."
 
+-> security consideration /w server/client
+
 3. Making a requirement that the "DHCP server or the network itself
    shall be trusted by some means including network access control or
    DHCP authentication¡É.  Is this this ¡Èshall¡É intended to be an
    RFC 2119  ¡ÈMUST¡É?
+
+-> not intended. general advisory and changed to should (not SHOULD).
 
 I consider this draft to be Ready with nits.
 
@@ -179,7 +139,11 @@ Lengths are listed haphazardly.  Be consistent in either including them or
 not.  Timer lengths are listed as n-bit integers, but this may be confusing
 given that the document says "Short floating point format is used to
 describe the wide range of timer values".  So, are the timer values floating
-point or integer?  Is the combined implication supposed to be that the
+point or integer?  
+
+-> old undeleted description on float, fixed
+
+Is the combined implication supposed to be that the
 numbers are formatted as floating point (for greater range), but only take
 on integer values?  Given that the values in this document are all given in
 reference to division by the value of TUNIT, it's possible that values might
@@ -234,6 +198,7 @@ to "[RFC7227] guidelines".
 Page 3, section 2, 1st paragraph, 1st sentence: insert "the" before
 "following".
 
+
 Page 3, section 2, last paragraph, last sentence: change "from" to "by".
 
 Page 3, section 2.1, 1st paragraph, last sentence: change "floating point"
@@ -247,6 +212,7 @@ Delete the first "RFC3315".  Add a comma after "18.1.5".
 
 Page 5, section 2.2, 1st paragraph, last sentence: insert "the" before the
 first "Option".
+
 
 Page 5, section 2.2, 2nd paragraph, 1st sentence: insert "the" before "MPL".
 Clarify whether the "Unsigned Short Floating Point" discussion should be
@@ -285,6 +251,8 @@ in both places in the sentence.  Append "it was" after "if".  Change "value"
 to "values".  
 
 Page 6, section 2.4, 2nd paragraph: insert "an" before "incoming".
+
+--- ¢¬¤ä¤Ã¤¿ ¢­¤Þ¤À ---
 
 Page 6, section 2.6, 1st paragraph: change "two times of" to "twice the".
 Question: does this restriction apply even when the client is using a "very
@@ -325,3 +293,9 @@ I suppose I should really phrase that as "a Standards Track RFC".  It's not
 old enough to jump directly to "Internet Standard". 
 
    -Peter
+
+
+* nits
+
+- kill the FIXME
+- ZigBee IP references...
