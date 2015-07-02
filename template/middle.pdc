@@ -105,9 +105,15 @@ The priority of MPL Parameter Configurations applied to an MPL Domain is as foll
  - Wildcard MPL Parameter Configuration (option_len=16)
  - Default configuration given in the MPL specification.
 
+Priority of other configurations such as manual configuration given on a node is not defined in the document.
+
 There SHALL be no more than one MPL Parameter Configuration Option for an MPL domain or the wildcard. Thus, the order of DHCPv6 options in the packet has no effect on precedence. 
 
-A node MAY leave an MPL domain if the following two conditions are satisfied. 1) The MPL domain is configured by a DHCPv6 option from a DHCPv6 server previously. 2) The node has received an updated MPL Parameter Configuration Option without a configuration for the MPL domain.
+A node SHOULD leave an MPL domain if it receives an updated
+MPL Parameter Configuration Option without a configuration for the
+MPL domain, unless it has overriding manual configuration on the MPL domain.
+In other words, if a node is configured to work as a MPL Forwarder for a MPL domain regardless of DHCPv6 Options,
+the node MAY stay on the MPL domain even if it receives an MPL Parameter Configuration Option without configuration for the MPL domain.
 
 MPL parameters may be updated occasionally. With stateful DHCPv6, updates can be done when the renewal timer expires. [Information Refresh Time Option](#RFC4242) shall be used to keep each forwarder updated. 
 

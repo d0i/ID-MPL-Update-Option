@@ -1,6 +1,10 @@
 # Update History
 
-Updates on draft-ietf-roll-mpl-configuration-03 to draft-ietf-roll-mpl-configuration-05:
+Updates on draft-ietf-roll-mpl-configuration-05 to draft-ietf-roll-mpl-configuration-06:
+
+ * added description on manual (external) configurations
+
+Updates on draft-ietf-roll-mpl-configuration-04 to draft-ietf-roll-mpl-configuration-05:
 
  * fixed *_IMAX definition as RFC6206 defines
  * fixed *_EXP definition as draft-ietf-roll-trickle-mcast defines
