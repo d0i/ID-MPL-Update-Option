@@ -22,6 +22,7 @@ Updates on draft-ietf-roll-mpl-configuration-06 to draft-ietf-roll-mpl-configura
  * added more per-section reference to I-D.ietf-roll-trickle-mcast (#171)
  * field 'Z' clarified (#171, #172)
  * fixed other nits (#171)
+ * clarified use of TUNIT, *_IMIN, and *_IMAX with reference to RFC6206 (#172)
 
 Updates on draft-ietf-roll-mpl-configuration-05 to draft-ietf-roll-mpl-configuration-06:
 

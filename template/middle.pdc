@@ -74,7 +74,7 @@ To distribute a configuration of an MPL domain or a default value for all MPL do
 `DM_IMIN` (unsigned 16-bit integer):
 :    DATA_MESSAGE_IMIN/TUNIT in milliseconds. 0 and 0xffff are reserved and MUST NOT be used.
 `DM_IMAX` (unsigned 8-bit integer):
-:    DATA_MESSAGE_IMAX. 0 and 0xff are reserved and MUST NOT be used.
+:    DATA_MESSAGE_IMAX. The actual maximum timeout is described as a number of doublings of DATA_MESSAGE_IMIN, as described in [](#RFC6206) Section 4.1.  0 and 0xff are reserved and MUST NOT be used.
 `DM_T_EXP` (unsigned 16-bit integer):
 :    DATA_MESSAGE_TIMER_EXPIRATIONS. 0 and 0xffff are reserved and MUST NOT be used.
 `C_K` (unsigned 8-bit integer):
@@ -82,11 +82,17 @@ To distribute a configuration of an MPL domain or a default value for all MPL do
 `C_IMIN` (unsigned 16-bit integer):
 :    CONTROL_MESSAGE_IMIN/TUNIT in milliseconds. 0 and 0xffff are reserved and MUST NOT be used.
 `C_IMAX` (unsigned 8-bit integer):
-:    CONTROL_MESSAGE_IMAX. 0 and 0xff are reserved and MUST NOT be used.
+:    CONTROL_MESSAGE_IMAX. The actual maximum timeout is described as a number of doublings of CONTROL_MESSAGE_IMIN. 0 and 0xff are reserved and MUST NOT be used.
 `C_T_EXP` (unsigned 16-bit integer):
 :    CONTROL_MESSAGE_TIMER_EXPIRATIONS. 0 and 0xffff are reserved and MUST NOT be used.
 
-Note that all time values (Trickle timers and expiration periods) are in TUNIT milliseconds precision. For example, if TUNIT is 20 and the data message interval minimum (DATA_MESSAGE_IMIN) is 1000ms, then DM_IMIN shall be set to 50.
+Note that the time values (SEED_SET_ENTRY_LIFETIME, DATA_MESSAGE_IMIN, and CONTROL_MESSAGE_IMIN) in MPL are defined in TUNIT milliseconds precision in MPL Parameter Configuration Options. For example, if TUNIT is 20 and the data message interval minimum (DATA_MESSAGE_IMIN) is 1000ms, then DM_IMIN shall be set to 50. 
+
+For maximum interval size (*_IMAX), [](#RFC6206) defines them as follows:
+
+> The maximum interval size, Imax, is described as a number of doublings of the minimum interval size (the base-2 log(max/min)). For example, a protocol might define Imax as 16.  If the minimum interval is 100 ms, then the amount of time specified by Imax is 100 ms * 65,536, i.e., 6,553.6 seconds or approximately 109 minutes.
+
+Because minimum interval size in the MPL Parameter Configuration Options is described as TUNIT millisecond precision, corresponding maximum interval size is also in TUNIT precision. For example, if TUNIT is 10 and C_IMIN is 50, the minimum interval size of the trickle timer for control messages is 500ms. In this case, the maximum interval size of the trickle timer is 32 seconds (500ms * 2^6) if C_IMAX is 6.
 
 ## DHCPv6 Client Behavior
 
@@ -94,7 +100,7 @@ Clients MAY request the MPL Parameter Configuration Option, as described in [](#
 
 Clients MUST support multiple MPL Parameter Configuration Option, as stated in section 2.
 
-If a DHCPv6 client with an MPL forwarder configured by the MPL Parameter Configuration Option is unable to receive a valid response from a server within T2 (if stateful) or twice the Information Refresh Time (if stateless), it MUST suspend the MPL forwarders of the MPL domains configured by the option. MPL forwarders configured by other methods such as static configuration file MUST NOT be suspended.
+If a DHCPv6 client with an MPL forwarder configured by the MPL Parameter Configuration Option is unable to receive a valid response from a server within T2 of the last valid DHCPv6 message sent from the server (if stateful) or twice the Information Refresh Time (if stateless), it MUST suspend the MPL forwarders of the MPL domains configured by the option. MPL forwarders configured by other methods such as static configuration file MUST NOT be suspended.
 
 Clients MUST ignore all MPL Parameter Configuration Options if the options in a DHCPv6 message contains any invalid value (e.g., it uses reserved all-0 or all-1 values in parameters). In this case, the message is considered not received in MPL context and the condition described in the previous paragraph applies.
 
