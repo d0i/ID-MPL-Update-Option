@@ -119,7 +119,7 @@ Priority of other configurations such as manual configuration given on a node is
 
 There MUST be no more than one MPL Parameter Configuration Option for an MPL domain or the wildcard. Thus, the order of DHCPv6 options in the packet has no effect on precedence. 
 
-A node SHOULD leave an MPL domain if it receives an updated and all-valid
+A node MUST leave an MPL domain if it receives an updated and all-valid
 MPL Parameter Configuration Options without a configuration for the
 MPL domain, unless it has overriding manual configuration on the MPL domain.
 In other words, if a node is configured to work as a MPL Forwarder for a MPL domain regardless of DHCPv6 Options,
@@ -142,7 +142,20 @@ It's never appropriate for a relay agent to add options to a message heading tow
 
 ## Operational Considerations
 
+This draft introduces dynamic update of MPL parameters. Because the
+update process is not synchronized, nodes may have inconsistent
+parameter sets.
+
 [](#RFC6206) section 6 describe various problems that happens if the trickle timers do not match between communicating nodes. To keep the timers synchronized, it is RECOMMENDED not to update the parameters of an MPL domain too often. A reasonable update rate would be once per expected information refresh time interval, such as T1 in [](#RFC3315) or Information Refresh Time in [](#RFC4242).
+
+Inconsistent parameter sets may reduce performance. On the other hand, 
+this situation
+will work as long as both new and old parameter sets are reasonable parameter sets
+for a given communication load. As the motivations for parameter update
+include update of the environment, node density, or communication load,
+operators of MPL networks shall be aware of unupdated nodes and make
+sure old and new parameter sets are reasonable for the expected refresh
+intervals.
 
 # IANA Considerations
 
@@ -164,7 +177,7 @@ overloading the network.
 The DHCP server or the network itself should be trusted by
 some means such as DHCPv6 authentications described in Section 21 of [RFC3315](#RFC3315).
 However, ROLL environment may expect less computing resource, and DHCPv6 authentication may not available.
-In such cases, other methods for security should be applied to a ROLL network.
+In such cases, other methods to protect integrity between DHCPv6 servers and clients should be applied to a ROLL network.
 Some ROLL specification such as [ZigBee IP](#ZigBeeIP) expects [RFC5191](#RFC5191) to authenticate
 joining nodes and all nodes in the network can be trusted. To protect attacks from outside of the network,
-unnecessary DHCPv6 packets should be filtered on the border router between the ROLL network and the Internet.
+DHCPv6 packets SHOULD be filtered on the border router between the ROLL network and the Internet, except for the packets between the ROLL network and a remote DHCPv6 server or DHCPv6 relays configured to manage the network.

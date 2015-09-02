@@ -1,19 +1,10 @@
-# Considerations on Inconsistent Parameter Set
-
-This draft introduces dynamic update of MPL parameters. Because the
-update process is not synchronized, nodes may have inconsistent
-parameter sets.
-
-Inconsistent parameter sets may reduce performance. On the other hand, 
-this situation
-will work as long as both new and old parameter sets are reasonable parameter sets
-for a given communication load. As the motivations for parameter update
-include update of the environment, node density, or communication load,
-operators of MPL networks shall be aware of unupdated nodes and make
-sure old and new parameter sets are reasonable for the expected refresh
-intervals.
-
 # Update History (TO EDITORS: this section is intended to be removed before this document becomes an RFC)
+
+Updates on draft-ietf-roll-mpl-configuration-07 to draft-ietf-roll-mpl-configuration-08:
+
+ * clarified when to leave (SHOULD->MUST)
+ * moved Trickle parameter considerations on appendix to operational considerations
+ * even clarified some texts
 
 Updates on draft-ietf-roll-mpl-configuration-06 to draft-ietf-roll-mpl-configuration-07:
 
