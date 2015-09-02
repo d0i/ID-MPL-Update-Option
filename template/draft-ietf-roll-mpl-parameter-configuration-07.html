@@ -145,8 +145,8 @@
 roll                                                              Y. Doi
 Internet-Draft                                       TOSHIBA Corporation
 Intended status: Standards Track                             M. Gillmore
-Expires: March 1, 2016                                        Itron, Inc
-                                                         August 29, 2015
+Expires: March 5, 2016                                        Itron, Inc
+                                                       September 2, 2015
 
 
              <span class="h1">MPL Parameter Configuration Option for DHCPv6</span>
@@ -178,7 +178,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 1, 2016.
+   This Internet-Draft will expire on March 5, 2016.
 
 Copyright Notice
 
@@ -193,9 +193,9 @@ Copyright Notice
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                 [Page 1]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 1]</span>
 </pre><pre class='newpage'><a name="page-2" id="page-2" href="#page-2" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
    to this document.  Code Components extracted from this document must
@@ -249,9 +249,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                 [Page 2]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 2]</span>
 </pre><pre class='newpage'><a name="page-3" id="page-3" href="#page-3" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
    This document defines the way to distribute parameter sets for MPL
@@ -305,9 +305,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                 [Page 3]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 3]</span>
 </pre><pre class='newpage'><a name="page-4" id="page-4" href="#page-4" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -361,9 +361,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                 [Page 4]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 4]</span>
 </pre><pre class='newpage'><a name="page-5" id="page-5" href="#page-5" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
       DATA_MESSAGE_IMIN, as described in <a href="../../pandoc2rfc/rfcmarkup?rfc=6206#section-4.1">[RFC6206] Section&nbsp;4.1</a>. 0 and
@@ -417,9 +417,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                 [Page 5]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 5]</span>
 </pre><pre class='newpage'><a name="page-6" id="page-6" href="#page-6" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
 <span class="h3"><a name="section-2.2">2.2</a>.  DHCPv6 Client Behavior</span>
@@ -435,11 +435,11 @@ Table of Contents
 
    If a DHCPv6 client with an MPL forwarder configured by the MPL
    Parameter Configuration Option is unable to receive a valid response
-   from a server within T2 (if stateful) or twice the Information
-   Refresh Time (if stateless), it MUST suspend the MPL forwarders of
-   the MPL domains configured by the option.  MPL forwarders configured
-   by other methods such as static configuration file MUST NOT be
-   suspended.
+   from a server within T2 of the last valid DHCPv6 message sent from
+   the server (if stateful) or twice the Information Refresh Time (if
+   stateless), it MUST suspend the MPL forwarders of the MPL domains
+   configured by the option.  MPL forwarders configured by other methods
+   such as static configuration file MUST NOT be suspended.
 
    Clients MUST ignore all MPL Parameter Configuration Options if the
    options in a DHCPv6 message contains any invalid value (e.g., it uses
@@ -473,9 +473,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                 [Page 6]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 6]</span>
 </pre><pre class='newpage'><a name="page-7" id="page-7" href="#page-7" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
    There MUST be no more than one MPL Parameter Configuration Option for
@@ -529,9 +529,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                 [Page 7]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 7]</span>
 </pre><pre class='newpage'><a name="page-8" id="page-8" href="#page-8" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
    [<a name="ref-RFC6206" id="ref-RFC6206">RFC6206</a>] <a href="#section-6">section 6</a> describe various problems that happens if the
@@ -585,9 +585,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                 [Page 8]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 8]</span>
 </pre><pre class='newpage'><a name="page-9" id="page-9" href="#page-9" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
    [<a name="ref-RFC2119" id="ref-RFC2119">RFC2119</a>]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -641,9 +641,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                 [Page 9]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 9]</span>
 </pre><pre class='newpage'><a name="page-10" id="page-10" href="#page-10" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
 <span class="h2"><a name="appendix-B">Appendix B</a>.  Update History (TO EDITORS: this section is intended to be</span>
@@ -697,9 +697,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                [Page 10]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                [Page 10]</span>
 </pre><pre class='newpage'><a name="page-11" id="page-11" href="#page-11" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
    o  Reserved numbers are clearly denoted
@@ -753,9 +753,9 @@ Authors' Addresses
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 1, 2016                [Page 11]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                [Page 11]</span>
 </pre><pre class='newpage'><a name="page-12" id="page-12" href="#page-12" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6               August 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
 
 
    Matthew Gillmore
@@ -809,7 +809,7 @@ Authors' Addresses
 
 
 
-Doi &amp; Gillmore            Expires March 1, 2016                [Page 12]
+Doi &amp; Gillmore            Expires March 5, 2016                [Page 12]
 
 </pre><br />
 <span class="noprint"><small><small>Html markup produced by rfcmarkup 1.96, available from

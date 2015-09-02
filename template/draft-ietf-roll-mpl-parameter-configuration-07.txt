@@ -5,8 +5,8 @@
 roll                                                              Y. Doi
 Internet-Draft                                       TOSHIBA Corporation
 Intended status: Standards Track                             M. Gillmore
-Expires: March 1, 2016                                        Itron, Inc
-                                                         August 29, 2015
+Expires: March 5, 2016                                        Itron, Inc
+                                                       September 2, 2015
 
 
              MPL Parameter Configuration Option for DHCPv6
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 1, 2016.
+   This Internet-Draft will expire on March 5, 2016.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Doi & Gillmore            Expires March 1, 2016                 [Page 1]
+Doi & Gillmore            Expires March 5, 2016                 [Page 1]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
    to this document.  Code Components extracted from this document must
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Doi & Gillmore            Expires March 1, 2016                 [Page 2]
+Doi & Gillmore            Expires March 5, 2016                 [Page 2]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
    This document defines the way to distribute parameter sets for MPL
@@ -165,9 +165,9 @@ Internet-Draft            MPL Conf. for DHCPv6               August 2015
 
 
 
-Doi & Gillmore            Expires March 1, 2016                 [Page 3]
+Doi & Gillmore            Expires March 5, 2016                 [Page 3]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -221,9 +221,9 @@ Internet-Draft            MPL Conf. for DHCPv6               August 2015
 
 
 
-Doi & Gillmore            Expires March 1, 2016                 [Page 4]
+Doi & Gillmore            Expires March 5, 2016                 [Page 4]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
       DATA_MESSAGE_IMIN, as described in [RFC6206] Section 4.1. 0 and
@@ -277,9 +277,9 @@ Internet-Draft            MPL Conf. for DHCPv6               August 2015
 
 
 
-Doi & Gillmore            Expires March 1, 2016                 [Page 5]
+Doi & Gillmore            Expires March 5, 2016                 [Page 5]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
 2.2.  DHCPv6 Client Behavior
@@ -295,11 +295,11 @@ Internet-Draft            MPL Conf. for DHCPv6               August 2015
 
    If a DHCPv6 client with an MPL forwarder configured by the MPL
    Parameter Configuration Option is unable to receive a valid response
-   from a server within T2 (if stateful) or twice the Information
-   Refresh Time (if stateless), it MUST suspend the MPL forwarders of
-   the MPL domains configured by the option.  MPL forwarders configured
-   by other methods such as static configuration file MUST NOT be
-   suspended.
+   from a server within T2 of the last valid DHCPv6 message sent from
+   the server (if stateful) or twice the Information Refresh Time (if
+   stateless), it MUST suspend the MPL forwarders of the MPL domains
+   configured by the option.  MPL forwarders configured by other methods
+   such as static configuration file MUST NOT be suspended.
 
    Clients MUST ignore all MPL Parameter Configuration Options if the
    options in a DHCPv6 message contains any invalid value (e.g., it uses
@@ -333,9 +333,9 @@ Internet-Draft            MPL Conf. for DHCPv6               August 2015
 
 
 
-Doi & Gillmore            Expires March 1, 2016                 [Page 6]
+Doi & Gillmore            Expires March 5, 2016                 [Page 6]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
    There MUST be no more than one MPL Parameter Configuration Option for
@@ -389,9 +389,9 @@ Internet-Draft            MPL Conf. for DHCPv6               August 2015
 
 
 
-Doi & Gillmore            Expires March 1, 2016                 [Page 7]
+Doi & Gillmore            Expires March 5, 2016                 [Page 7]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
    [RFC6206] section 6 describe various problems that happens if the
@@ -445,9 +445,9 @@ Internet-Draft            MPL Conf. for DHCPv6               August 2015
 
 
 
-Doi & Gillmore            Expires March 1, 2016                 [Page 8]
+Doi & Gillmore            Expires March 5, 2016                 [Page 8]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -501,9 +501,9 @@ Appendix A.  Considerations on Inconsistent Parameter Set
 
 
 
-Doi & Gillmore            Expires March 1, 2016                 [Page 9]
+Doi & Gillmore            Expires March 5, 2016                 [Page 9]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
 Appendix B.  Update History (TO EDITORS: this section is intended to be
@@ -557,9 +557,9 @@ Appendix B.  Update History (TO EDITORS: this section is intended to be
 
 
 
-Doi & Gillmore            Expires March 1, 2016                [Page 10]
+Doi & Gillmore            Expires March 5, 2016                [Page 10]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
    o  Reserved numbers are clearly denoted
@@ -613,9 +613,9 @@ Authors' Addresses
 
 
 
-Doi & Gillmore            Expires March 1, 2016                [Page 11]
+Doi & Gillmore            Expires March 5, 2016                [Page 11]
 
-Internet-Draft            MPL Conf. for DHCPv6               August 2015
+Internet-Draft            MPL Conf. for DHCPv6            September 2015
 
 
    Matthew Gillmore
@@ -669,4 +669,4 @@ Internet-Draft            MPL Conf. for DHCPv6               August 2015
 
 
 
-Doi & Gillmore            Expires March 1, 2016                [Page 12]
+Doi & Gillmore            Expires March 5, 2016                [Page 12]

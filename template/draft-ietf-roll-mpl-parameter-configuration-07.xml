@@ -42,7 +42,7 @@
         <email>matthew.gillmore@itron.com</email>
       </address>
     </author>
-    <date month="Aug" year="2015"/>
+    <date month="Sep" year="2015"/>
     <area>rtg</area>
     <workgroup>roll</workgroup>
     <keyword>MPL, DHCPv6</keyword>
@@ -135,7 +135,7 @@
       <section title="DHCPv6 Client Behavior" anchor="dhcpv6-client-behavior" toc="default">
         <t>Clients MAY request the MPL Parameter Configuration Option, as described in <xref target="RFC3315" pageno="false" format="default"/>, sections 17.1.1, 18.1.1, 18.1.3, 18.1.4, 18.1.5, and 22.7. As a convenience to the reader, we mention here that the client includes requested option codes in the Option Request Option.  </t>
         <t>Clients MUST support multiple MPL Parameter Configuration Option, as stated in section 2.  </t>
-        <t>If a DHCPv6 client with an MPL forwarder configured by the MPL Parameter Configuration Option is unable to receive a valid response from a server within T2 (if stateful) or twice the Information Refresh Time (if stateless), it MUST suspend the MPL forwarders of the MPL domains configured by the option. MPL forwarders configured by other methods such as static configuration file MUST NOT be suspended.  </t>
+        <t>If a DHCPv6 client with an MPL forwarder configured by the MPL Parameter Configuration Option is unable to receive a valid response from a server within T2 of the last valid DHCPv6 message sent from the server (if stateful) or twice the Information Refresh Time (if stateless), it MUST suspend the MPL forwarders of the MPL domains configured by the option. MPL forwarders configured by other methods such as static configuration file MUST NOT be suspended.  </t>
         <t>Clients MUST ignore all MPL Parameter Configuration Options if the options in a DHCPv6 message contains any invalid value (e.g., it uses reserved all-0 or all-1 values in parameters). In this case, the message is considered not received in MPL context and the condition described in the previous paragraph applies.  </t>
       </section>
       <section title="MPL Forwarder Behavior" anchor="mpl-forwarder-behavior" toc="default">
