@@ -108,7 +108,7 @@
         <t>
           <list style="hanging">
             <t hangText="OPTION_MPL_PARAMETERS:">DHCPv6 option identifier (not yet assigned).  </t>
-            <t hangText="option_len:">Length of the option. It SHOULD be 16 (without MPL domain address) or 32 (with MPL domain address).  </t>
+            <t hangText="option_len:">Length of the option, which is 16 of no MPL domain address is present, or 32 if there is an MPL domain address.  </t>
             <t hangText="P (1 bit):">A flag to indicate PROACTIVE_FORWARDING. The flag is set if PROACTIVE_FORWARDING is true.  </t>
             <t hangText="Z (7 bits):">Reserved for future use. Servers MUST set them to zero.  Clients SHOULD ignore the bits set.  </t>
             <t hangText="TUNIT (unsigned 8-bit integer):">Unit time of timer parameters (SE_LIFETIME, and *_IMIN) in this option. 0 and 0xff are reserved and MUST NOT be used.  </t>
@@ -139,7 +139,7 @@
         <t>Clients MUST ignore all MPL Parameter Configuration Options if the options in a DHCPv6 message contains any invalid value (e.g., it uses reserved all-0 or all-1 values in parameters). In this case, the message is considered not received in MPL context and the condition described in the previous paragraph applies.  </t>
       </section>
       <section title="MPL Forwarder Behavior" anchor="mpl-forwarder-behavior" toc="default">
-        <t>If a DHCPv6 client requests and receives the MPL Parameter Configuration Option, the node SHOULD join the MPL domain given by the option and act as an MPL forwarder. Note that there may be cases in which a node may fail to join a domain (or domains) due to local resource constraints. Each joining node SHOULD configure its MPL forwarder with the given parameter set for the MPL domain.  </t>
+        <t>If a DHCPv6 client requests and receives the MPL Parameter Configuration Option, the node SHOULD join the MPL domain given by the option and act as an MPL forwarder. Note that there may be cases in which a node may fail to join a domain (or domains) due to local resource constraints. Each joining node SHOULD configure its MPL forwarder with the given parameter set for the MPL domain.  Each MPL domain is defined by an MPL Domain Address given by an MPL Parameter Configuration Option. As defined in Section 2 of <xref target="I-D.ietf-roll-trickle-mcast" pageno="false" format="default"/>, an MPL Domain Address is an IPv6 multicast address associated to a set of MPL network interfaces in an MPL Domain.  </t>
         <t>The priority of MPL Parameter Configurations applied to an MPL Domain is as follows (high to low): </t>
         <t>
           <list style="symbols">
@@ -162,8 +162,8 @@
         <t>It's never appropriate for a relay agent to add options to a message heading toward the client, and relay agents don't actually construct Relay-Reply messages anyway. There are no additional requirements for relays.  </t>
       </section>
       <section title="Operational Considerations" anchor="operational-considerations" toc="default">
-        <t><xref target="RFC6206" pageno="false" format="default"/> section 6 describe various problems that happens if the trickle timers do not match between communicating nodes. To keep the timers synchronized, it is RECOMMENDED not to update the parameters of an MPL domain too often. A reasonable update rate would be once per expected information refresh time interval, such as T1 in <xref target="RFC3315" pageno="false" format="default"/> or Information Refresh Time in <xref target="RFC4242" pageno="false" format="default"/>.  </t>
         <t>This draft introduces dynamic update of MPL parameters. Because the update process is not synchronized, nodes may have inconsistent parameter sets.  </t>
+        <t><xref target="RFC6206" pageno="false" format="default"/> section 6 describe various problems that happens if the trickle timers do not match between communicating nodes. To keep the timers synchronized, it is RECOMMENDED not to update the parameters of an MPL domain too often. A reasonable update rate would be once per expected information refresh time interval, such as T1 in <xref target="RFC3315" pageno="false" format="default"/> or Information Refresh Time in <xref target="RFC4242" pageno="false" format="default"/>.  </t>
         <t>Inconsistent parameter sets may reduce performance. On the other hand, this situation will work as long as both new and old parameter sets are reasonable parameter sets for a given communication load. As the motivations for parameter update include update of the environment, node density, or communication load, operators of MPL networks shall be aware of unupdated nodes and make sure old and new parameter sets are reasonable for the expected refresh intervals.  </t>
       </section>
     </section>

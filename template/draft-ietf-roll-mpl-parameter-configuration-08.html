@@ -145,8 +145,8 @@
 roll                                                              Y. Doi
 Internet-Draft                                       TOSHIBA Corporation
 Intended status: Standards Track                             M. Gillmore
-Expires: March 5, 2016                                        Itron, Inc
-                                                       September 2, 2015
+Expires: March 4, 2016                                        Itron, Inc
+                                                                Sep 2015
 
 
              <span class="h1">MPL Parameter Configuration Option for DHCPv6</span>
@@ -178,7 +178,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 5, 2016.
+   This Internet-Draft will expire on March 4, 2016.
 
 Copyright Notice
 
@@ -193,9 +193,9 @@ Copyright Notice
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 1]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                 [Page 1]</span>
 </pre><pre class='newpage'><a name="page-2" id="page-2" href="#page-2" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
 
 
    to this document.  Code Components extracted from this document must
@@ -215,11 +215,11 @@ Table of Contents
      <a href="#section-2.6">2.6</a>.  Operational Considerations  . . . . . . . . . . . . . . .   <a href="#page-7">7</a>
    <a href="#section-3">3</a>.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   <a href="#page-8">8</a>
    <a href="#section-4">4</a>.  Security Considerations . . . . . . . . . . . . . . . . . . .   <a href="#page-8">8</a>
-   <a href="#section-5">5</a>.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-8">8</a>
-     <a href="#section-5.1">5.1</a>.  Normative References  . . . . . . . . . . . . . . . . . .   <a href="#page-8">8</a>
+   <a href="#section-5">5</a>.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   <a href="#page-9">9</a>
+     <a href="#section-5.1">5.1</a>.  Normative References  . . . . . . . . . . . . . . . . . .   <a href="#page-9">9</a>
      <a href="#section-5.2">5.2</a>.  Informative References  . . . . . . . . . . . . . . . . .   <a href="#page-9">9</a>
    <a href="#appendix-A">Appendix A</a>.  Update History (TO EDITORS: this section is intended
-                to be removed before this document becomes an RFC) .   9
+                to be removed before this document becomes an RFC) .  10
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  <a href="#page-11">11</a>
 
 <span class="h2"><a name="section-1">1</a>.  Introduction</span>
@@ -249,9 +249,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 2]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                 [Page 2]</span>
 </pre><pre class='newpage'><a name="page-3" id="page-3" href="#page-3" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
 
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -305,9 +305,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 3]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                 [Page 3]</span>
 </pre><pre class='newpage'><a name="page-4" id="page-4" href="#page-4" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
 
 
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -331,8 +331,8 @@ Table of Contents
 
    OPTION_MPL_PARAMETERS:  DHCPv6 option identifier (not yet assigned).
 
-   option_len:  Length of the option.  It SHOULD be 16 (without MPL
-      domain address) or 32 (with MPL domain address).
+   option_len:  Length of the option, which is 16 of no MPL domain
+      address is present, or 32 if there is an MPL domain address.
 
    P (1 bit):  A flag to indicate PROACTIVE_FORWARDING.  The flag is set
       if PROACTIVE_FORWARDING is true.
@@ -361,9 +361,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 4]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                 [Page 4]</span>
 </pre><pre class='newpage'><a name="page-5" id="page-5" href="#page-5" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
 
 
    DM_T_EXP (unsigned 16-bit integer):  DATA_MESSAGE_TIMER_EXPIRATIONS.
@@ -417,9 +417,9 @@ Table of Contents
 
 
 
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 5]</span>
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                 [Page 5]</span>
 </pre><pre class='newpage'><a name="page-6" id="page-6" href="#page-6" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
 
 
    Clients MUST support multiple MPL Parameter Configuration Option, as
@@ -446,7 +446,12 @@ Table of Contents
    the option and act as an MPL forwarder.  Note that there may be cases
    in which a node may fail to join a domain (or domains) due to local
    resource constraints.  Each joining node SHOULD configure its MPL
-   forwarder with the given parameter set for the MPL domain.
+   forwarder with the given parameter set for the MPL domain.  Each MPL
+   domain is defined by an MPL Domain Address given by an MPL Parameter
+   Configuration Option.  As defined in Section 2 of
+   [<a href="#ref-I-D.ietf-roll-trickle-mcast">I-D.ietf-roll-trickle-mcast</a>], an MPL Domain Address is an IPv6
+   multicast address associated to a set of MPL network interfaces in an
+   MPL Domain.
 
    The priority of MPL Parameter Configurations applied to an MPL Domain
    is as follows (high to low):
@@ -465,19 +470,19 @@ Table of Contents
    an MPL domain or the wildcard.  Thus, the order of DHCPv6 options in
    the packet has no effect on precedence.
 
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                 [Page 6]</span>
+</pre><pre class='newpage'><a name="page-7" id="page-7" href="#page-7" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
+
+
    A node MUST leave an MPL domain if it receives an updated and all-
    valid MPL Parameter Configuration Options without a configuration for
    the MPL domain, unless it has overriding manual configuration on the
    MPL domain.  In other words, if a node is configured to work as a MPL
    Forwarder for a MPL domain regardless of DHCPv6 Options, the node MAY
-
-
-
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 6]</span>
-</pre><pre class='newpage'><a name="page-7" id="page-7" href="#page-7" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
-
-
    stay on the MPL domain even if it receives an MPL Parameter
    Configuration Option without configuration for the MPL domain.
 
@@ -512,6 +517,23 @@ Table of Contents
 
 <span class="h3"><a name="section-2.6">2.6</a>.  Operational Considerations</span>
 
+   This draft introduces dynamic update of MPL parameters.  Because the
+   update process is not synchronized, nodes may have inconsistent
+   parameter sets.
+
+
+
+
+
+
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                 [Page 7]</span>
+</pre><pre class='newpage'><a name="page-8" id="page-8" href="#page-8" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
+
+
    [<a name="ref-RFC6206" id="ref-RFC6206">RFC6206</a>] <a href="#section-6">section 6</a> describe various problems that happens if the
    trickle timers do not match between communicating nodes.  To keep the
    timers synchronized, it is RECOMMENDED not to update the parameters
@@ -519,21 +541,9 @@ Table of Contents
    per expected information refresh time interval, such as T1 in
    [<a href="../../pandoc2rfc/rfcmarkup?rfc=3315" title='"Dynamic Host Configuration Protocol for IPv6 (DHCPv6)"'>RFC3315</a>] or Information Refresh Time in [<a href="../../pandoc2rfc/rfcmarkup?rfc=4242" title='"Information Refresh Time Option for Dynamic Host Configuration Protocol for IPv6 (DHCPv6)"'>RFC4242</a>].
 
-   This draft introduces dynamic update of MPL parameters.  Because the
-   update process is not synchronized, nodes may have inconsistent
-   parameter sets.
-
    Inconsistent parameter sets may reduce performance.  On the other
    hand, this situation will work as long as both new and old parameter
    sets are reasonable parameter sets for a given communication load.
-
-
-
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 7]</span>
-</pre><pre class='newpage'><a name="page-8" id="page-8" href="#page-8" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
-
-
    As the motivations for parameter update include update of the
    environment, node density, or communication load, operators of MPL
    networks shall be aware of unupdated nodes and make sure old and new
@@ -560,6 +570,26 @@ Table of Contents
    implementations need to take care in setting reasonable bounds for
    each parameter in order to avoid overloading the network.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                 [Page 8]</span>
+</pre><pre class='newpage'><a name="page-9" id="page-9" href="#page-9" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
+
+
    The DHCP server or the network itself should be trusted by some means
    such as DHCPv6 authentications described in <a href="../../pandoc2rfc/rfcmarkup?rfc=3315#section-21">Section&nbsp;21 of RFC3315</a>
    [<a href="../../pandoc2rfc/rfcmarkup?rfc=3315" title='"Dynamic Host Configuration Protocol for IPv6 (DHCPv6)"'>RFC3315</a>].  However, ROLL environment may expect less computing
@@ -582,13 +612,6 @@ Table of Contents
               Hui, J. and R. Kelsey, "Multicast Protocol for Low power
               and Lossy Networks (MPL)", <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-trickle-mcast-12">draft-ietf-roll-trickle-</a>
               <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-trickle-mcast-12">mcast-12</a> (work in progress), June 2015.
-
-
-
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 8]</span>
-</pre><pre class='newpage'><a name="page-9" id="page-9" href="#page-9" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
-
 
    [<a name="ref-RFC2119" id="ref-RFC2119">RFC2119</a>]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", <a href="../../pandoc2rfc/rfcmarkup?bcp=14">BCP 14</a>, <a href="../../pandoc2rfc/rfcmarkup?rfc=2119">RFC 2119</a>, March 1997.
@@ -615,6 +638,14 @@ Table of Contents
               Yegin, "Protocol for Carrying Authentication for Network
               Access (PANA)", <a href="../../pandoc2rfc/rfcmarkup?rfc=5191">RFC 5191</a>, May 2008.
 
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                 [Page 9]</span>
+</pre><pre class='newpage'><a name="page-10" id="page-10" href="#page-10" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
+
+
    [<a name="ref-ZigBeeIP" id="ref-ZigBeeIP">ZigBeeIP</a>]
               ZigBee Alliance, "ZigBee IP Specification", Mar 2014.
 
@@ -638,13 +669,6 @@ Table of Contents
 
    o  operational consideration now refers <a href="../../pandoc2rfc/rfcmarkup?rfc=6206">RFC6206</a> and some texts are
       moved to <a href="#section-2.2">section 2.2</a> (#171)
-
-
-
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                 [Page 9]</span>
-</pre><pre class='newpage'><a name="page-10" id="page-10" href="#page-10" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
-
 
    o  added more per-section reference to I-D.ietf-roll-trickle-mcast
       (#171)
@@ -671,6 +695,13 @@ Table of Contents
    o  added references to <a href="../../pandoc2rfc/rfcmarkup?rfc=3315">RFC3315</a> and <a href="../../pandoc2rfc/rfcmarkup?rfc=7227">RFC7227</a> in security considerations
       section
 
+
+
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                [Page 10]</span>
+</pre><pre class='newpage'><a name="page-11" id="page-11" href="#page-11" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
+
+
    o  added a paragraph on security consideration according to secdir
       review
 
@@ -692,15 +723,6 @@ Table of Contents
 
    o  Removed reference for DHCPv6 stateless reconfiguration as it has
       expired
-
-
-
-
-
-<span class="grey">Doi &amp; Gillmore            Expires March 5, 2016                [Page 10]</span>
-</pre><pre class='newpage'><a name="page-11" id="page-11" href="#page-11" class="invisible"> </a>
-<span class="grey">Internet-Draft            MPL Conf. for DHCPv6            September 2015</span>
-
 
    Updates on <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-01">draft-ietf-roll-mpl-configuration-01</a> to <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-02">draft-ietf-roll-</a>
    <a href="../../pandoc2rfc/rfcmarkup?draft=draft-ietf-roll-mpl-configuration-02">mpl-configuration-02</a>:
@@ -726,6 +748,15 @@ Table of Contents
    o  I-D renamed.
 
 Authors' Addresses
+
+
+
+
+
+<span class="grey">Doi &amp; Gillmore            Expires March 4, 2016                [Page 11]</span>
+</pre><pre class='newpage'><a name="page-12" id="page-12" href="#page-12" class="invisible"> </a>
+<span class="grey">Internet-Draft            MPL Conf. for DHCPv6                  Sep 2015</span>
+
 
    Yusuke Doi
    TOSHIBA Corporation
@@ -753,7 +784,32 @@ Authors' Addresses
 
 
 
-Doi &amp; Gillmore            Expires March 5, 2016                [Page 11]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Doi &amp; Gillmore            Expires March 4, 2016                [Page 12]
 
 </pre><br />
 <span class="noprint"><small><small>Html markup produced by rfcmarkup 1.96, available from

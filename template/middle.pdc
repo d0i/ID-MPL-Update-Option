@@ -60,7 +60,7 @@ To distribute a configuration of an MPL domain or a default value for all MPL do
 `OPTION_MPL_PARAMETERS`:
 :    DHCPv6 option identifier (not yet assigned).
 `option_len`:
-:    Length of the option. It SHOULD be 16 (without MPL domain address) or 32 (with MPL domain address).
+:    Length of the option, which is 16 of no MPL domain address is present, or 32 if there is an MPL domain address.
 `P` (1 bit):
 :    A flag to indicate PROACTIVE_FORWARDING. The flag is set if PROACTIVE_FORWARDING is true.
 `Z` (7 bits):
@@ -108,6 +108,7 @@ Clients MUST ignore all MPL Parameter Configuration Options if the options in a 
 
 If a DHCPv6 client requests and receives the MPL Parameter Configuration Option, the node SHOULD join the MPL domain given by the option and act as an MPL forwarder. Note that there may be cases in which a node may fail to join a domain (or domains) due to local resource constraints.
 Each joining node SHOULD configure its MPL forwarder with the given parameter set for the MPL domain.
+Each MPL domain is defined by an MPL Domain Address given by an MPL Parameter Configuration Option. As defined in Section 2 of [](#I-D.ietf-roll-trickle-mcast), an MPL Domain Address is an IPv6 multicast address associated to a set of MPL network interfaces in an MPL Domain.
 
 The priority of MPL Parameter Configurations applied to an MPL Domain is as follows (high to low):
 
