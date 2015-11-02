@@ -5,8 +5,8 @@
 roll                                                              Y. Doi
 Internet-Draft                                       TOSHIBA Corporation
 Intended status: Standards Track                             M. Gillmore
-Expires: April 23, 2016                                       Itron, Inc
-                                                        October 21, 2015
+Expires: May 5, 2016                                          Itron, Inc
+                                                        November 2, 2015
 
 
              MPL Parameter Configuration Option for DHCPv6
@@ -38,7 +38,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 23, 2016.
+   This Internet-Draft will expire on May 5, 2016.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Doi & Gillmore           Expires April 23, 2016                 [Page 1]
+Doi & Gillmore             Expires May 5, 2016                  [Page 1]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    to this document.  Code Components extracted from this document must
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Doi & Gillmore           Expires April 23, 2016                 [Page 2]
+Doi & Gillmore             Expires May 5, 2016                  [Page 2]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -165,9 +165,9 @@ Internet-Draft            MPL Conf. for DHCPv6              October 2015
 
 
 
-Doi & Gillmore           Expires April 23, 2016                 [Page 3]
+Doi & Gillmore             Expires May 5, 2016                  [Page 3]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -221,9 +221,9 @@ Internet-Draft            MPL Conf. for DHCPv6              October 2015
 
 
 
-Doi & Gillmore           Expires April 23, 2016                 [Page 4]
+Doi & Gillmore             Expires May 5, 2016                  [Page 4]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    DM_T_EXP (unsigned 16-bit integer):  DATA_MESSAGE_TIMER_EXPIRATIONS.
@@ -277,9 +277,9 @@ Internet-Draft            MPL Conf. for DHCPv6              October 2015
 
 
 
-Doi & Gillmore           Expires April 23, 2016                 [Page 5]
+Doi & Gillmore             Expires May 5, 2016                  [Page 5]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    Clients MUST support multiple MPL Parameter Configuration Option, as
@@ -333,9 +333,9 @@ Internet-Draft            MPL Conf. for DHCPv6              October 2015
 
 
 
-Doi & Gillmore           Expires April 23, 2016                 [Page 6]
+Doi & Gillmore             Expires May 5, 2016                  [Page 6]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    A node MUST leave an MPL domain if it receives an updated and all-
@@ -389,9 +389,9 @@ Internet-Draft            MPL Conf. for DHCPv6              October 2015
 
 
 
-Doi & Gillmore           Expires April 23, 2016                 [Page 7]
+Doi & Gillmore             Expires May 5, 2016                  [Page 7]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    [RFC6206] section 6 describe various problems that happens if the
@@ -445,9 +445,9 @@ Internet-Draft            MPL Conf. for DHCPv6              October 2015
 
 
 
-Doi & Gillmore           Expires April 23, 2016                 [Page 8]
+Doi & Gillmore             Expires May 5, 2016                  [Page 8]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    The DHCP server or the network itself should be trusted by some means
@@ -501,9 +501,9 @@ Internet-Draft            MPL Conf. for DHCPv6              October 2015
 
 
 
-Doi & Gillmore           Expires April 23, 2016                 [Page 9]
+Doi & Gillmore             Expires May 5, 2016                  [Page 9]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    [ZigBeeIP]
@@ -557,9 +557,9 @@ Appendix A.  Update History (TO EDITORS: this section is intended to be
 
 
 
-Doi & Gillmore           Expires April 23, 2016                [Page 10]
+Doi & Gillmore             Expires May 5, 2016                 [Page 10]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    o  added a paragraph on security consideration according to secdir
@@ -613,9 +613,9 @@ Authors' Addresses
 
 
 
-Doi & Gillmore           Expires April 23, 2016                [Page 11]
+Doi & Gillmore             Expires May 5, 2016                 [Page 11]
 
-Internet-Draft            MPL Conf. for DHCPv6              October 2015
+Internet-Draft            MPL Conf. for DHCPv6             November 2015
 
 
    Yusuke Doi
@@ -669,4 +669,4 @@ Internet-Draft            MPL Conf. for DHCPv6              October 2015
 
 
 
-Doi & Gillmore           Expires April 23, 2016                [Page 12]
+Doi & Gillmore             Expires May 5, 2016                 [Page 12]
